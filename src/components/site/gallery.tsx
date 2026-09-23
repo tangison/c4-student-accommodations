@@ -21,13 +21,12 @@ export function Gallery() {
   return (
     <section id="gallery" className="py-20 md:py-24 bg-white scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <p className="text-sm font-bold tracking-widest uppercase text-gold">Life at C4</p>
-          <h2 className="mt-2 text-3xl sm:text-4xl font-extrabold tracking-tight text-brand">
+        <div className="max-w-3xl mx-auto mb-12">
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-brand">
             Take a Look Around
           </h2>
           <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
-            A glimpse of the spaces waiting for you — rooms built for rest,
+            A glimpse of the spaces waiting for you: rooms built for rest,
             corners built for study.
           </p>
         </div>

@@ -49,7 +49,7 @@ export const metadata: Metadata = {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "C4 Student Accommodations CC — 2027 bookings now open in Windhoek",
+        alt: "C4 Student Accommodations CC: 2027 bookings now open in Windhoek",
       },
     ],
   },

@@ -23,7 +23,7 @@ export function FloatingActions() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Book now via WhatsApp"
-        className={`fixed bottom-6 right-24 z-[9998] flex items-center gap-2 rounded-full bg-[#25D366] text-white pl-3.5 pr-4 py-3 shadow-xl hover:shadow-2xl hover:-translate-y-0.5 transition-all duration-300 ${
+        className={`fixed bottom-6 right-24 z-actions flex items-center gap-2 rounded-full bg-[#25D366] text-white pl-3.5 pr-4 py-3 shadow-xl hover:shadow-2xl hover:-translate-y-0.5 transition-all duration-300 ${
           visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
         }`}
       >

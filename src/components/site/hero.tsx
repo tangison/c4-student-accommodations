@@ -19,11 +19,7 @@ export function Hero() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         {/* Copy */}
         <div className="space-y-7">
-          <p className="text-gold-soft font-bold tracking-widest uppercase text-sm">
-            {SITE.locations.join(" & ")} · {SITE.city}, {SITE.country}
-          </p>
-
-          <h1 className="text-4xl sm:text-5xl xl:text-6xl font-extrabold leading-[1.1] tracking-tight">
+          <h1 className="text-4xl sm:text-5xl xl:text-6xl font-extrabold leading-[1.1] tracking-tight text-balance">
             A Safe Second Home for{" "}
             <span className="text-gold-soft">Female Students</span> in Windhoek
           </h1>
@@ -33,9 +29,10 @@ export function Hero() {
           </div>
 
           <p className="text-lg text-white/85 max-w-xl leading-relaxed">
-            The only student stay that cares and matters. Fully furnished rooms,
-            fibre Wi-Fi, laundry and a secure, student-focused environment —
-            everything designed so you can focus on your success.
+            The only student stay that cares and matters, in Khomasdal and
+            Rocky Crest. Fully furnished rooms, fibre Wi-Fi, laundry and a
+            secure, student-focused environment, so you can focus on your
+            success.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 pt-1">
@@ -82,9 +79,9 @@ export function Hero() {
           </div>
 
           {/* Floating price card */}
-          <div className="animate-float absolute -bottom-6 -left-3 sm:left-6 bg-white text-brand rounded-xl shadow-2xl px-5 py-4 border-l-4 border-gold">
-            <p className="text-2xl font-extrabold leading-none">{SITE.pricePerMonth}</p>
-            <p className="text-xs font-semibold text-ink/60 mt-1">
+          <div className="animate-float absolute -bottom-6 -left-3 sm:left-6 bg-white text-brand rounded-xl shadow-2xl px-5 py-4">
+            <p className="text-2xl font-extrabold leading-none tnum">{SITE.pricePerMonth}</p>
+            <p className="text-xs font-semibold text-gold-deep mt-1">
               per person / month · {SITE.deposit} deposit
             </p>
           </div>

@@ -16,7 +16,7 @@ export function PricingBanner() {
         <div className="mt-4 flex flex-wrap justify-center items-center gap-3">
           <span className="inline-flex items-center gap-2 bg-white text-brand font-bold text-sm md:text-base px-4 py-1.5 rounded-full shadow">
             <BedDouble className="w-4 h-4 text-gold" aria-hidden="true" />
-            Not per room — share the stay, split nothing else
+            Not per room. Share the stay, split nothing else
           </span>
           <span className="inline-flex items-center gap-2 bg-brand text-white font-bold text-sm md:text-base px-4 py-1.5 rounded-full shadow">
             <CalendarCheck className="w-4 h-4 text-gold-soft" aria-hidden="true" />

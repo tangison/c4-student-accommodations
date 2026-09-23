@@ -31,7 +31,7 @@ export function SiteFooter() {
             </div>
             <p className="text-sm text-white/75 leading-relaxed">
               Safe, secure and fully furnished accommodation for female
-              students — the only student stay that cares and matters.
+              students. The only student stay that cares and matters.
             </p>
           </div>
 
@@ -105,8 +105,8 @@ export function SiteFooter() {
                 </li>
               ))}
             </ul>
-            <p className="mt-4 text-xs text-white/55 leading-relaxed">
-              {SITE.bookingYear} bookings now open — {SITE.pricePerMonth} per
+            <p className="mt-4 text-xs text-white/70 leading-relaxed">
+              {SITE.bookingYear} bookings now open: {SITE.pricePerMonth} per
               person / month, {SITE.deposit} deposit.
             </p>
           </div>
@@ -118,36 +118,31 @@ export function SiteFooter() {
             <a
               key={link.href}
               href={link.href}
-              className="text-xs text-white/60 hover:text-gold-soft transition-colors"
+              className="text-xs text-white/70 hover:text-gold-soft transition-colors"
             >
               {link.label}
             </a>
           ))}
         </nav>
 
-        {/* Bottom bar with Tangison signature */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-5 border-t border-white/10">
-          <p className="text-xs text-white/60">
+        {/* Bottom bar with copyright and Tangison Studio signature.
+            Right padding keeps the credit clear of the floating action buttons. */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-5 pb-14 sm:pb-0 sm:pr-72 border-t border-white/15">
+          <p className="text-xs text-white/70">
             © <span className="copyright-year">{year}</span> {SITE.name}. All
             rights reserved.
           </p>
-          <div className="tangison-sig flex items-center gap-1.5 text-xs text-white/40">
-            <span>Built by</span>
+          <p className="flex items-center gap-1.5 text-xs text-white/70">
+            <span>Made by</span>
             <a
-              href="https://tangison.com"
+              href="https://studio.tangison.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white/60 hover:text-white font-medium transition-colors"
+              className="text-white/90 hover:text-white font-medium transition-colors"
             >
-              Tangison Agency
+              Tangison Studio
             </a>
-            <span
-              aria-hidden="true"
-              className="bg-white/10 border border-white/15 text-white/50 px-2 py-0.5 rounded-full text-[10px] uppercase tracking-widest"
-            >
-              AI-Powered
-            </span>
-          </div>
+          </p>
         </div>
       </div>
     </footer>

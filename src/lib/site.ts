@@ -127,7 +127,7 @@ export const TESTIMONIALS = [
   },
   {
     quote:
-      "Everything is taken care of — cleaning, laundry, even transport when I book the shuttle. I just focus on my books.",
+      "Everything is taken care of: cleaning, laundry, even transport when I book the shuttle. I just focus on my books.",
     name: "R. Beukes",
     role: "NUST Student",
     initials: "RB",
@@ -149,7 +149,7 @@ export const FAQS = [
   },
   {
     q: "Where are the accommodations located?",
-    a: "We have student stays in Khomasdal and Rocky Crest, Windhoek — safe residential areas with easy access to campuses, shops and student transport routes.",
+    a: "We have student stays in Khomasdal and Rocky Crest, Windhoek. Both are safe residential areas with easy access to campuses, shops and student transport routes.",
   },
   {
     q: "Is transport available to campus?",
@@ -161,7 +161,7 @@ export const FAQS = [
   },
   {
     q: "Is the Wi-Fi good enough for online classes?",
-    a: "Yes — fibre Wi-Fi runs throughout the property, and there is a dedicated study area plus free PC use for residents, so online lectures and research are never a struggle.",
+    a: "Yes. Fibre Wi-Fi runs throughout the property, and there is a dedicated study area plus free PC use for residents, so online lectures and research are never a struggle.",
   },
   {
     q: "How does the deposit work?",
@@ -170,8 +170,8 @@ export const FAQS = [
 ];
 
 export const STATS = [
-  { value: "2", label: "Locations — Khomasdal & Rocky Crest" },
+  { value: "2", label: "Locations: Khomasdal & Rocky Crest" },
   { value: "100%", label: "Dedicated to female students" },
-  { value: "N$2,800", label: "Per person / month, all-in style living" },
+  { value: "N$2,800", label: "Per person / month, essentials included" },
   { value: "2027", label: "Bookings now open" },
 ];

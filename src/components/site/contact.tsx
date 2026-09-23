@@ -44,17 +44,14 @@ export function Contact() {
       <div className="reveal relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         {/* Copy + channels */}
         <div>
-          <p className="text-sm font-bold tracking-widest uppercase text-gold">
-            {SITE.bookingYear} Bookings Open
-          </p>
-          <h2 className="mt-2 text-3xl sm:text-4xl font-extrabold tracking-tight text-brand leading-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-brand leading-tight">
             Secure Your Room Before They&apos;re Gone
           </h2>
           <p className="mt-4 text-lg text-ink/75 leading-relaxed max-w-xl">
-            Rooms for {SITE.bookingYear} are limited and the {SITE.deposit}{" "}
-            deposit secures your place. Message us on WhatsApp and our team
-            will walk you through everything — from viewing the rooms to
-            moving in.
+            {SITE.bookingYear} bookings are open and rooms are limited. The
+            {" "}{SITE.deposit} deposit secures your place. Message us on
+            WhatsApp and our team will walk you through everything, from
+            viewing the rooms to moving in.
           </p>
 
           <div className="mt-8 space-y-4">
@@ -63,7 +60,7 @@ export function Contact() {
                 key={title}
                 href={href}
                 {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                className={`flex items-center gap-4 rounded-xl p-4 shadow-md transition-all duration-300 hover:-translate-y-0.5 ${
+                className={`flex items-center gap-4 rounded-xl p-4 shadow-soft transition-all duration-300 hover:shadow-lift hover:-translate-y-0.5 ${
                   highlight
                     ? "bg-brand text-white hover:bg-gold"
                     : "bg-white text-ink hover:shadow-lg"

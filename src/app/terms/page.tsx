@@ -24,7 +24,7 @@ export default function TermsPage() {
         {
           heading: "2. Intellectual Property",
           body: [
-            "All content on this site — including text, images, the C4 logo and design — is owned by " +
+            "All content on this site, including text, images, the C4 logo and design, is owned by " +
               SITE.name +
               " or its licensors and is protected by applicable intellectual property laws. You may not reproduce or distribute any content without written permission.",
           ],

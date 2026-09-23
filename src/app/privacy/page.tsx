@@ -20,7 +20,7 @@ export default function PrivacyPage() {
           body: [
             "We may collect the following types of information:",
             [
-              "Contact information: your name, phone number and email address — when you message us on WhatsApp, call us, or send an email about a booking.",
+              "Contact information: your name, phone number and email address, collected when you message us on WhatsApp, call us, or send an email about a booking.",
               "Enquiry details: the content of your messages with us, including questions about rooms, pricing and move-in dates.",
               "Usage data: pages visited and general browsing behaviour, collected anonymously to help us improve the website.",
             ],

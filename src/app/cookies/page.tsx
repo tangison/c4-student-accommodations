@@ -13,7 +13,7 @@ export default function CookiesPage() {
     <LegalPage
       title="Cookie Policy"
       updated="1 September 2026"
-      intro="This site uses cookies — small text files stored on your device — to improve your browsing experience."
+      intro="This site uses cookies, which are small text files stored on your device, to improve your browsing experience."
       sections={[
         {
           heading: "What cookies we use",

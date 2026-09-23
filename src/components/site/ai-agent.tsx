@@ -7,7 +7,7 @@ import { SITE } from "@/lib/site";
 type Msg = { role: "user" | "assistant"; content: string };
 
 const GREETING =
-  "Hi! I'm the C4 Assistant. Ask me about rooms, pricing, locations or how to book for 2027 — I'm here to help!";
+  "Hi, I'm the C4 Assistant. Ask me about rooms, pricing, locations or how to book for 2027.";
 
 export function AiAgent() {
   const [open, setOpen] = useState(false);
@@ -60,7 +60,7 @@ export function AiAgent() {
           role: "assistant",
           content:
             data.reply ??
-            `Sorry, something went wrong on my side. Please WhatsApp us at ${SITE.phoneDisplay} and our team will help you right away.`,
+            `Sorry, something went wrong on my side. Please WhatsApp us on ${SITE.phoneDisplay} and our team will help you right away.`,
         },
       ]);
     } catch {
@@ -69,7 +69,7 @@ export function AiAgent() {
         ...cur,
         {
           role: "assistant",
-          content: `I'm having trouble connecting. Please try WhatsApp: ${SITE.phoneDisplay} — we reply fast!`,
+          content: `I'm having trouble connecting. Please try WhatsApp on ${SITE.phoneDisplay}. We reply fast.`,
         },
       ]);
     } finally {
@@ -79,7 +79,7 @@ export function AiAgent() {
   }
 
   return (
-    <div id="c4-agent" className="fixed bottom-6 right-6 z-[9999] font-sans">
+    <div id="c4-agent" className="fixed bottom-6 right-6 z-agent font-sans">
       {/* Chat window */}
       {open && (
         <div
@@ -143,7 +143,7 @@ export function AiAgent() {
                   send();
                 }
               }}
-              placeholder="Ask me anything..."
+              placeholder="Ask about rooms, pricing, booking..."
               maxLength={500}
               autoComplete="off"
               aria-label="Type your message"

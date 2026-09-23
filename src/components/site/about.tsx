@@ -16,12 +16,12 @@ const values = [
   {
     icon: Sparkles,
     title: "Clean Living",
-    text: "Regular cleaning, laundry service and well-maintained spaces — comfort without the chores.",
+    text: "Regular cleaning, laundry service and well-maintained spaces. Comfort without the chores.",
   },
   {
     icon: HeartHandshake,
     title: "Care That Matters",
-    text: "We are the only student stay that cares and matters — and our residents feel it daily.",
+    text: "We are the only student stay that cares and matters, and our residents feel it daily.",
   },
 ];
 
@@ -32,7 +32,7 @@ export function About() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Image side */}
           <div className="relative order-2 lg:order-1">
-            <div className="rounded-2xl overflow-hidden shadow-xl">
+            <div className="rounded-2xl overflow-hidden shadow-soft">
               <Image
                 src="/images/building-twilight.jpg"
                 alt="Student residence building glowing warmly at twilight"
@@ -42,7 +42,7 @@ export function About() {
                 className="w-full h-auto object-cover"
               />
             </div>
-            <div className="absolute -bottom-8 -right-2 sm:right-8 w-40 sm:w-52 rounded-xl overflow-hidden shadow-2xl border-4 border-white hidden sm:block">
+            <div className="absolute -bottom-8 -right-2 sm:right-8 w-40 sm:w-52 rounded-xl overflow-hidden shadow-soft border-4 border-white hidden sm:block">
               <Image
                 src="/images/community.jpg"
                 alt="Students chatting and laughing together around a table"
@@ -56,8 +56,7 @@ export function About() {
 
           {/* Copy side */}
           <div className="order-1 lg:order-2">
-            <p className="text-sm font-bold tracking-widest uppercase text-gold">About C4</p>
-            <h2 className="mt-2 text-3xl sm:text-4xl font-extrabold tracking-tight text-brand leading-tight">
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-brand leading-tight">
               The Only Student Stay That Cares and Matters
             </h2>
             <p className="mt-5 text-lg text-ink/75 leading-relaxed">
@@ -71,32 +70,36 @@ export function About() {
               From the fully furnished rooms and fibre Wi-Fi to the cleaning,
               laundry and caring on-site team, every detail is handled so
               parents have peace of mind and students can give their energy to
-              what matters — their future.
+              what matters: their future.
             </p>
 
-            <dl className="grid grid-cols-2 gap-4 mt-8">
+            <dl className="grid grid-cols-2 gap-x-8 gap-y-6 mt-9">
               {STATS.map((stat) => (
-                <div key={stat.label} className="bg-white rounded-xl shadow-md p-4 border-l-4 border-gold">
-                  <dt className="order-2 text-xs font-semibold text-ink/60 leading-snug mt-1">
+                <div key={stat.label} className="border-t border-border pt-4">
+                  <dd className="text-2xl font-extrabold text-brand leading-none tnum">
+                    {stat.value}
+                  </dd>
+                  <dt className="text-xs font-semibold text-ink/60 leading-snug mt-1.5">
                     {stat.label}
                   </dt>
-                  <dd className="text-2xl font-extrabold text-brand leading-none">{stat.value}</dd>
                 </div>
               ))}
             </dl>
           </div>
         </div>
 
-        {/* Values */}
-        <div className="reveal grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-20">
+        {/* Values: editorial two-column list, no boxes */}
+        <div className="reveal grid grid-cols-1 sm:grid-cols-2 gap-x-14 gap-y-9 mt-16 lg:mt-24">
           {values.map(({ icon: Icon, title, text }) => (
-            <article key={title} className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow">
-              <div className="w-11 h-11 rounded-lg bg-brand-pale/60 text-brand flex items-center justify-center mb-4">
-                <Icon className="w-5.5 h-5.5" aria-hidden="true" />
+            <div key={title} className="flex gap-4">
+              <span className="w-10 h-10 rounded-lg bg-brand-pale/60 text-brand flex items-center justify-center shrink-0">
+                <Icon className="w-5 h-5" aria-hidden="true" />
+              </span>
+              <div>
+                <h3 className="font-bold text-ink">{title}</h3>
+                <p className="text-sm text-ink/70 leading-relaxed mt-1.5">{text}</p>
               </div>
-              <h3 className="font-bold text-ink mb-2">{title}</h3>
-              <p className="text-sm text-ink/70 leading-relaxed">{text}</p>
-            </article>
+            </div>
           ))}
         </div>
       </div>

@@ -146,28 +146,78 @@
     background: var(--color-gold);
     color: #fff;
   }
+  input,
+  textarea,
+  [contenteditable] {
+    caret-color: var(--color-gold);
+  }
+  @media (pointer: fine) {
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--color-brand-fog);
+      border-radius: 8px;
+      border: 2px solid var(--color-background);
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+  }
 }
 
 @layer utilities {
-  /* Gold check-mark list used across amenity cards */
+  /* Gold check-mark list used across amenity cards.
+     Drawn SVG check via mask, one consistent stroke weight. */
   .check-list li {
     position: relative;
     padding-left: 1.75rem;
     margin-bottom: 0.5rem;
   }
   .check-list li::before {
-    content: "✓";
-    color: var(--color-gold);
+    content: "";
     position: absolute;
     left: 0;
-    font-weight: 800;
+    top: 0.15em;
+    width: 1.05rem;
+    height: 1.05rem;
+    background-color: var(--color-gold);
+    -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>') center / contain no-repeat;
+    mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>') center / contain no-repeat;
+  }
+  /* Softer gold for check lists on dark teal surfaces */
+  .check-list.on-dark li::before {
+    background-color: var(--color-gold-soft);
+  }
+  /* Tabular figures for prices, stats and phone numbers */
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+  /* Teal-tinted elevation: shadows carry the brand hue, never pure black */
+  .shadow-soft {
+    box-shadow:
+      0 1px 2px rgba(4, 71, 71, 0.05),
+      0 10px 30px -12px rgba(4, 71, 71, 0.14);
+  }
+  .shadow-lift {
+    box-shadow:
+      0 2px 4px rgba(4, 71, 71, 0.06),
+      0 18px 44px -16px rgba(4, 71, 71, 0.22);
+  }
+  /* Shared z-index scale: nav 50, actions 80, agent 90, skip 100 */
+  .z-actions {
+    z-index: 80;
+  }
+  .z-agent {
+    z-index: 90;
   }
   /* Skip link for accessibility */
   .skip-link {
     position: absolute;
     left: -9999px;
     top: 0;
-    z-index: 10001;
+    z-index: 100;
     background: var(--color-gold);
     color: #fff;
     padding: 0.75rem 1.25rem;
