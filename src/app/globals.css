@@ -5,12 +5,12 @@
 
 @theme inline {
   /* ---------- C4 brand palette (official brand guidelines) ---------- */
-  --color-brand: #044747;         /* Deep Teal — primary */
+  --color-brand: #044747;         /* Deep Teal, primary */
   --color-brand-deep: #022E2E;    /* Teal shade */
   --color-brand-mist: #588787;    /* Teal tint */
   --color-brand-fog: #9AB5B5;     /* Teal tint */
   --color-brand-pale: #D9E2E3;    /* Teal tint */
-  --color-gold: #A1751F;          /* Gold — secondary */
+  --color-gold: #A1751F;          /* Gold, secondary */
   --color-gold-deep: #684C14;     /* Gold shade */
   --color-gold-soft: #C1A56D;     /* Gold tint */
   --color-gold-pale: #D9C7A5;     /* Gold tint */

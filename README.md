@@ -1,6 +1,6 @@
-# C4 Student Accommodations CC — Website
+# C4 Student Accommodations CC, Website
 
-Official website for **C4 Student Accommodations CC** — safe, secure and fully
+Official website for **C4 Student Accommodations CC**, safe, secure and fully
 furnished accommodation for female students in Khomasdal & Rocky Crest,
 Windhoek, Namibia. 2027 bookings now open.
 
@@ -27,12 +27,12 @@ Windhoek, Namibia. 2027 bookings now open.
 | `/privacy`, `/terms`, `/cookies`, `/disclaimer`, `/accessibility` | Legal & compliance pages |
 | `/sitemap.xml`, `/robots.txt`, `/manifest.webmanifest` | SEO / PWA routes (generated) |
 | `/api/chat` | AI assistant endpoint |
-| `src/lib/site.ts` | **Single source of truth** — contact details, pricing, FAQs, amenities |
+| `src/lib/site.ts` | **Single source of truth**, contact details, pricing, FAQs, amenities |
 
 ## Customising
 
 All business facts (phone, WhatsApp link, email, price, deposit, locations,
-FAQs, amenities, testimonials) live in **`src/lib/site.ts`** — edit one file
+FAQs, amenities, testimonials) live in **`src/lib/site.ts`**, edit one file
 and the whole site updates.
 
 To replace the illustrative preview imagery, drop real photos into

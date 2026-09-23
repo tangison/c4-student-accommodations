@@ -5,7 +5,7 @@ import { useEffect } from "react";
 /**
  * Activates the `.reveal` CSS class: elements marked with it fade/slide in
  * when they enter the viewport. Respects prefers-reduced-motion (handled in
- * CSS — elements stay visible when motion is reduced).
+ * CSS: elements stay visible when motion is reduced).
  *
  * Robustness rules:
  * 1. Elements already within 1.5 viewport heights on load are revealed

@@ -17,7 +17,7 @@ export function FloatingActions() {
 
   return (
     <>
-      {/* WhatsApp quick action — sits above the AI agent bubble */}
+      {/* WhatsApp quick action, sits above the AI agent bubble */}
       <a
         href={SITE.whatsappBooking}
         target="_blank"

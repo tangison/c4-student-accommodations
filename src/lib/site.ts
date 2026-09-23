@@ -1,5 +1,5 @@
 /**
- * C4 Student Accommodations CC — central site configuration.
+ * C4 Student Accommodations CC, central site configuration.
  * Single source of truth for contact details, pricing and content data.
  */
 
