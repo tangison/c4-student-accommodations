@@ -28,6 +28,81 @@ Rules:
 
 const FALLBACK_REPLY = `Thanks for your message! I'm offline right now, but our team will happily help you directly — WhatsApp ${SITE.phoneDisplay} or email ${SITE.email}. For 2027 bookings, a ${SITE.deposit} deposit secures your room.`;
 
+/**
+ * Local FAQ knowledge base used when no LLM backend is available
+ * (e.g. deployments without the sandbox SDK). Matches visitor questions
+ * to known facts about the business; escalates to WhatsApp otherwise.
+ */
+const KB: { keywords: string[][]; answer: string }[] = [
+  {
+    keywords: [["price", "rent", "cost", "how much", "fee", "monthly", "per month", "2800", "rate"]],
+    answer: `The rate is N$2,800 per person per month (not per room). It covers your fully furnished room, fibre Wi-Fi, room cleaning, laundry service, hot water and use of the study area and free PCs. Printing is available at an additional cost.`,
+  },
+  {
+    keywords: [["deposit", "2000", "secure", "reserv"]],
+    answer: `A N$2,000 deposit is required to secure your booking for 2027. Please WhatsApp us on +264 81 437 8400 for the full booking terms and payment details.`,
+  },
+  {
+    keywords: [["book", "booking", "apply", "register", "open", "availability", "available", "space", "room left"]],
+    answer: `2027 bookings are now open! Just tap any “Book Now” button on this site to chat with us on WhatsApp at +264 81 437 8400, or email c4studentstay@gmail.com. A N$2,000 deposit secures your spot.`,
+  },
+  {
+    keywords: [["where", "location", "located", "address", "khomasdal", "rocky", "crest", "windhoek", "find you"]],
+    answer: `We have student stays in Khomasdal and Rocky Crest, Windhoek — safe residential areas with easy access to campuses, shops and student transport routes.`,
+  },
+  {
+    keywords: [["female", "girls", "women", "boy", "male", "gender", "only"]],
+    answer: `Yes — C4 is dedicated accommodation for female students, built around safety, security and a student-focused environment.`,
+  },
+  {
+    keywords: [["wifi", "wi-fi", "internet", "fibre", "fiber", "pc", "computer", "study", "printing", "print"]],
+    answer: `Fibre Wi-Fi runs throughout the property, and there is a dedicated study area plus free PC use for residents. Printing is available at an additional cost — perfect for assignments.`,
+  },
+  {
+    keywords: [["transport", "shuttle", "bus", "taxi", "campus", "travel"]],
+    answer: `A paid shuttle service is available and student transport can be pre-booked, making the daily trip to campus simple and reliable.`,
+  },
+  {
+    keywords: [["furnish", "bed", "bring", "linen", "kitchen", "microwave", "kettle", "cutlery", "crockery", "iron", "hot water", "mattress"]],
+    answer: `Rooms come fully furnished with bunk beds, mattresses, bedding and linen, and the kitchen has crockery, cutlery, a microwave and a kettle — plus hot water. Just bring your personal items, textbooks and ambitions.`,
+  },
+  {
+    keywords: [["clean", "laundry", "washing", "chores"]],
+    answer: `Room cleaning and a laundry service are both included in your monthly rate, so you can focus entirely on your studies.`,
+  },
+  {
+    keywords: [["safe", "safety", "security", "secure", "parent", "worried"]],
+    answer: `Safety is our priority: C4 is a secure, dedicated female-only student environment managed by a caring team. It's built to give parents full peace of mind.`,
+  },
+  {
+    keywords: [["contact", "whatsapp", "phone", "call", "email", "number", "speak", "human"]],
+    answer: `You can reach our team any time on WhatsApp or by calling +264 81 437 8400, or email c4studentstay@gmail.com — we reply fast!`,
+  },
+  {
+    keywords: [["hello", "hi", "hey", "good day", "molo", "how are you"]],
+    answer: `Hello! 👋 I'm the C4 Assistant. Ask me about rooms, pricing, locations or how to book for 2027 — or type “book” and I'll show you how.`,
+  },
+  {
+    keywords: [["thank", "thanks", "great", "awesome", "nice"]],
+    answer: `You're welcome! If there's anything else — rooms, pricing, transport — just ask. We can't wait to welcome you home in 2027! 🎓`,
+  },
+];
+
+function localAnswer(question: string): string | null {
+  const q = question.toLowerCase();
+  let best: { score: number; answer: string } | null = null;
+  for (const entry of KB) {
+    let score = 0;
+    for (const alternatives of entry.keywords) {
+      if (alternatives.some((k) => q.includes(k))) score += 1;
+    }
+    if (score > 0 && (!best || score > best.score)) {
+      best = { score, answer: entry.answer };
+    }
+  }
+  return best ? best.answer : null;
+}
+
 export async function POST(req: Request) {
   let userMessages: { role: string; content: string }[] = [];
 
@@ -43,6 +118,8 @@ export async function POST(req: Request) {
   if (userMessages.length === 0 || !userMessages[userMessages.length - 1]?.content) {
     return NextResponse.json({ reply: "Please type a question and I'll do my best to help!" });
   }
+
+  const lastMessage = userMessages[userMessages.length - 1].content;
 
   try {
     // Lazy import so the sandbox SDK is only loaded server-side when available.
@@ -62,11 +139,13 @@ export async function POST(req: Request) {
     });
 
     const reply =
-      completion?.choices?.[0]?.message?.content?.trim() || FALLBACK_REPLY;
+      completion?.choices?.[0]?.message?.content?.trim() || localAnswer(lastMessage) || FALLBACK_REPLY;
     return NextResponse.json({ reply });
   } catch (error) {
-    console.error("AI agent error:", error);
-    // Graceful degradation: point the visitor to WhatsApp/email.
-    return NextResponse.json({ reply: FALLBACK_REPLY });
+    // No LLM backend available (e.g. standalone deployments): answer from the
+    // local FAQ knowledge base, else escalate the visitor to WhatsApp/email.
+    console.error("AI agent falling back to local FAQ:", error instanceof Error ? error.message : error);
+    const local = localAnswer(lastMessage);
+    return NextResponse.json({ reply: local ?? FALLBACK_REPLY });
   }
 }
