@@ -217,4 +217,11 @@
       scroll-behavior: auto;
     }
   }
+  /* Print: everything visible, no animation */
+  @media print {
+    .reveal {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
 }
