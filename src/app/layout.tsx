@@ -1,22 +1,17 @@
 import type { Metadata, Viewport } from "next";
-import { Montserrat, Geist_Mono } from "next/font/google";
+import { Outfit } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { SiteHeader } from "@/components/site/header";
 import { SiteFooter } from "@/components/site/footer";
 import { FloatingActions } from "@/components/site/floating-actions";
+import { SiteMotion } from "@/components/site/motion";
 import { SITE } from "@/lib/site";
 
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
+const outfit = Outfit({
+  variable: "--font-outfit",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
   display: "swap",
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
@@ -108,8 +103,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${montserrat.variable} ${geistMono.variable}`}>
-      <body className="antialiased bg-background text-foreground font-sans">
+    <html lang="en" className={`${outfit.variable}`}>
+      <body className="antialiased bg-background text-foreground font-sans overflow-x-hidden">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
@@ -119,12 +114,13 @@ export default function RootLayout({
         </a>
         <div className="min-h-screen flex flex-col">
           <SiteHeader />
-          <main id="main-content" className="flex-1">
+          <main id="main-content" className="flex-1 w-full max-w-full">
             {children}
           </main>
           <SiteFooter />
         </div>
         <FloatingActions />
+        <SiteMotion />
         <Toaster />
       </body>
     </html>

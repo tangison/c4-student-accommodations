@@ -63,3 +63,16 @@ Critic verdict: 12 of 16 genuinely useful; 10/12 capabilities owned. Flagged gap
 Asset-pipeline gap noted by critic is already satisfied in-session: real brand assets supplied by client (upload/C4-Brand-Assets.zip: SVG logos light/dark, icon set 32-1024px, favicon.ico, official palette sheet) and unzipped to upload/brand-assets/.
 
 Final count: 18 skills installed. Coverage: 12/12 capabilities.
+
+## Session re-verification (this session)
+
+GitHub rate limits blocked `npx skills add` again; git shallow-clone fallback restored the operative vetted skills. Folder listing of ~/.claude/skills:
+animation-vocabulary, color-palette, frontend-design, typography-scale, vercel-optimize, web-design-guidelines
+
+All contain SKILL.md (vercel-optimize: AGENTS.md entry point + references). Vet verdicts unchanged from rounds 1-2: no remote script execution, no credential harvesting, no data exfiltration, no Tangison rule overrides.
+
+Operative for the rebuild round, fully loaded in session context:
+- gpt-taste (leonxlnx/taste-skill) via `npx skills use ... --skill "gpt-taste"` (exit 0, output captured)
+- tangison-copywriting, tangison-web-audit (client-supplied, in session)
+
+Design RNG (scripts/design_rng.py, seed = 815 prompt chars): hero Cinematic Center, font Outfit, components Inline Typography Images + Infinite Marquee + Horizontal Accordions, GSAP Scrubbing Text Reveals + Image Scale & Fade Scroll.

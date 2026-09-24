@@ -105,17 +105,19 @@ export default function BrandPage() {
         <section className="mb-12">
           <h2 className="text-lg font-bold text-brand mb-4">Typography</h2>
           <div className="rounded-xl border border-border p-6">
-            <p className="text-3xl font-extrabold text-brand tracking-tight">
-              Montserrat ExtraBold
+            <p className="text-3xl font-semibold text-brand tracking-tight">
+              Outfit SemiBold
             </p>
-            <p className="mt-1 text-lg font-bold text-ink">Montserrat Bold</p>
+            <p className="mt-1 text-lg font-medium text-ink">Outfit Medium</p>
             <p className="mt-1 text-base text-ink/80">
-              Montserrat Regular carries body copy at a comfortable size.
+              Outfit Regular carries body copy at a comfortable size.
             </p>
             <p className="mt-4 text-sm text-ink/60 leading-relaxed">
-              Headings use ExtraBold or Bold with tight tracking. Body copy
-              uses Regular at 16px or larger. Prices, phone numbers and dates
-              use tabular figures so columns of numbers line up.
+              The site is set in Outfit, a clean geometric sans that keeps the
+              brand modern and legible. Headings use SemiBold with tight
+              tracking. Body copy uses Regular at 16px or larger. Prices, phone
+              numbers and dates use tabular figures so columns of numbers line
+              up.
             </p>
           </div>
         </section>

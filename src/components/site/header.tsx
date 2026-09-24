@@ -1,51 +1,75 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { Menu, X, MessageCircle } from "lucide-react";
-import { NAV_LINKS, SITE } from "@/lib/site";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Menu, X, Search, ArrowUpRight } from "lucide-react";
+import { NAV_LINKS, PAGES, LEGAL_LINKS, SITE } from "@/lib/site";
+import { SearchDialog } from "@/components/site/search-dialog";
 
+/**
+ * SiteHeader: a floating glass pill (gpt-taste premium nav), with a
+ * full-screen takeover menu. The menu is deliberately customisable: every
+ * page, contact channel and legal link lives in one PAGES/LEGAL_LINKS
+ * array in lib/site.ts, so editing the site map never touches this file.
+ */
 export function SiteHeader() {
-  const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [active, setActive] = useState("#home");
+  const closeBtnRef = useRef<HTMLButtonElement>(null);
+  const menuBtnRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
+    const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Scroll-spy: highlight the nav link of the section on screen.
+  // Close the menu on route change.
   useEffect(() => {
-    const sections = NAV_LINKS.map((l) => document.getElementById(l.href.slice(1))).filter(
-      (el): el is HTMLElement => el !== null
-    );
-    if (sections.length === 0) return;
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setActive(`#${entry.target.id}`);
-        });
-      },
-      { rootMargin: "-35% 0px -60% 0px", threshold: 0 }
-    );
-    sections.forEach((s) => io.observe(s));
-    return () => io.disconnect();
+    setMenuOpen(false);
+  }, [pathname]);
+
+  // Scroll lock + focus management + Esc for the takeover menu.
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";
+      const t = setTimeout(() => closeBtnRef.current?.focus(), 80);
+      const onKey = (e: KeyboardEvent) => {
+        if (e.key === "Escape") setMenuOpen(false);
+      };
+      window.addEventListener("keydown", onKey);
+      return () => {
+        document.body.style.overflow = "";
+        clearTimeout(t);
+        window.removeEventListener("keydown", onKey);
+      };
+    }
+  }, [menuOpen]);
+
+  const closeMenu = useCallback(() => {
+    setMenuOpen(false);
+    menuBtnRef.current?.focus();
   }, []);
 
   return (
-    <header
-      role="banner"
-      className={`sticky top-0 z-50 bg-white/95 backdrop-blur transition-shadow duration-300 ${
-        scrolled ? "shadow-md border-b border-brand-pale" : "shadow-sm"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20 gap-4">
-          {/* Logo */}
-          <a href="#home" className="flex-shrink-0 flex items-center" aria-label={`${SITE.name} home`}>
+    <>
+      <div className="fixed top-3 inset-x-3 sm:top-5 sm:inset-x-5 z-50 flex justify-center pointer-events-none">
+        <header
+          role="banner"
+          className={`pointer-events-auto w-full max-w-6xl flex items-center justify-between gap-3 rounded-full border border-ink/8 bg-bone/85 backdrop-blur-md transition-all duration-300 ${
+            scrolled ? "pl-4 pr-2 py-2 shadow-soft" : "pl-5 pr-2.5 py-2.5"
+          }`}
+        >
+          <Link
+            href="/"
+            aria-label={`${SITE.name} home`}
+            className="flex-shrink-0 flex items-center"
+          >
             <Image
               src="/c4-logo.svg"
               unoptimized
@@ -53,88 +77,167 @@ export function SiteHeader() {
               width={176}
               height={59}
               priority
-              className="h-11 w-auto object-contain"
+              className={`w-auto object-contain transition-[height] duration-300 ${scrolled ? "h-8" : "h-9"}`}
             />
-          </a>
+          </Link>
 
-          {/* Desktop nav */}
-          <nav aria-label="Main navigation" className="hidden lg:flex items-center gap-7">
+          {/* Desktop links */}
+          <nav aria-label="Main navigation" className="hidden lg:flex items-center gap-1">
             {NAV_LINKS.map((link) => {
-              const isActive = active === link.href;
+              const isActive = pathname === link.href;
               return (
-                <a
+                <Link
                   key={link.href}
                   href={link.href}
-                  aria-current={isActive ? "true" : undefined}
-                  className={`relative text-sm font-semibold transition-colors after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:rounded-full after:bg-gold after:transition-all after:duration-300 ${
+                  aria-current={isActive ? "page" : undefined}
+                  className={`px-3.5 py-2 text-[0.95rem] font-medium rounded-full transition-colors duration-200 ${
                     isActive
-                      ? "text-brand after:w-full"
-                      : "text-ink/80 hover:text-brand after:w-0"
+                      ? "text-brand bg-brand-pale/70"
+                      : "text-ink/75 hover:text-brand hover:bg-brand-pale/40"
                   }`}
                 >
                   {link.label}
-                </a>
+                </Link>
               );
             })}
           </nav>
 
-          {/* CTA */}
-          <div className="flex items-center gap-2">
-            <a
-              href={SITE.whatsapp}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden sm:inline-flex items-center gap-2 justify-center px-5 py-2.5 text-sm font-bold rounded-md text-white bg-brand hover:bg-gold transition-colors duration-300 shadow-md hover:shadow-lg"
-            >
-              <MessageCircle className="w-4 h-4" aria-hidden="true" />
-              Book Now via WhatsApp
-            </a>
-            {/* Mobile menu toggle */}
+          {/* Actions */}
+          <div className="flex items-center gap-1.5">
             <button
               type="button"
-              onClick={() => setOpen((v) => !v)}
-              aria-expanded={open}
-              aria-controls="mobile-nav"
-              aria-label={open ? "Close menu" : "Open menu"}
-              className="lg:hidden inline-flex items-center justify-center p-2.5 rounded-md text-brand hover:bg-brand-pale/60 transition-colors"
+              onClick={() => setSearchOpen(true)}
+              aria-label="Search the site"
+              aria-keyshortcuts="Meta+K"
+              className="inline-flex items-center justify-center w-10 h-10 rounded-full text-brand hover:bg-brand-pale/60 transition-colors"
             >
-              {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              <Search className="w-[1.15rem] h-[1.15rem]" aria-hidden="true" />
+            </button>
+            <Link
+              href="/book"
+              className="hidden sm:inline-flex items-center gap-1.5 px-5 py-2.5 text-sm font-semibold rounded-full text-white bg-brand hover:bg-brand-deep active:translate-y-px transition-[background-color,transform] duration-200"
+            >
+              Book for {SITE.bookingYear}
+            </Link>
+            <button
+              ref={menuBtnRef}
+              type="button"
+              onClick={() => setMenuOpen(true)}
+              aria-expanded={menuOpen}
+              aria-controls="site-menu"
+              aria-label="Open menu"
+              className="inline-flex items-center justify-center w-10 h-10 rounded-full text-brand hover:bg-brand-pale/60 transition-colors"
+            >
+              <Menu className="w-5 h-5" aria-hidden="true" />
             </button>
           </div>
-        </div>
+        </header>
       </div>
 
-      {/* Mobile nav panel */}
-      {open && (
-        <nav
-          id="mobile-nav"
-          aria-label="Mobile navigation"
-          className="lg:hidden border-t border-border bg-white px-4 pt-3 pb-5 shadow-lg"
+      {/* Full-screen takeover menu */}
+      {menuOpen && (
+        <div
+          id="site-menu"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Site menu"
+          className="menu-open fixed inset-0 z-[96] bg-brand-deep text-white flex flex-col"
         >
-          <ul className="space-y-1">
-            {NAV_LINKS.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="block px-3 py-2.5 rounded-md text-sm font-semibold text-ink/85 hover:bg-warmgrey hover:text-brand transition-colors"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-          <a
-            href={SITE.whatsapp}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-3 flex items-center justify-center gap-2 w-full px-5 py-3 text-sm font-bold rounded-md text-white bg-brand hover:bg-gold transition-colors"
-          >
-            <MessageCircle className="w-4 h-4" aria-hidden="true" />
-            Book Now via WhatsApp
-          </a>
-        </nav>
+          <div className="flex items-center justify-between px-5 sm:px-10 h-[4.5rem] sm:h-20 border-b border-white/10">
+            <Image
+              src="/c4-logo-ondark.svg"
+              unoptimized
+              alt={`${SITE.name} logo`}
+              width={176}
+              height={59}
+              className="h-9 w-auto object-contain"
+            />
+            <button
+              ref={closeBtnRef}
+              type="button"
+              onClick={closeMenu}
+              aria-label="Close menu"
+              className="inline-flex items-center gap-2 h-10 px-4 rounded-full text-sm font-medium text-white/85 hover:text-white hover:bg-white/10 transition-colors"
+            >
+              Close
+              <X className="w-5 h-5" aria-hidden="true" />
+            </button>
+          </div>
+
+          <div className="flex-1 overflow-y-auto grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-10 lg:gap-16 px-5 sm:px-10 py-10 lg:py-14">
+            {/* Pages */}
+            <nav aria-label="Menu navigation">
+              <ul className="divide-y divide-white/10">
+                {PAGES.map((page, i) => (
+                  <li key={page.href} className="menu-link" style={{ "--stagger": i } as React.CSSProperties}>
+                    <Link
+                      href={page.href}
+                      onClick={closeMenu}
+                      className="group flex items-baseline justify-between gap-4 py-4 sm:py-5"
+                    >
+                      <span className="display-2 text-white group-hover:text-gold-soft transition-colors duration-300">
+                        {page.label}
+                      </span>
+                      <span className="hidden sm:flex items-center gap-2 text-sm text-white/55 group-hover:text-white/80 transition-colors shrink-0">
+                        {page.note}
+                        <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            {/* Contact + legal */}
+            <div className="flex flex-col justify-between gap-10">
+              <div className="menu-link" style={{ "--stagger": 7 } as React.CSSProperties}>
+                <p className="text-sm font-semibold text-gold-soft mb-5">Talk to us</p>
+                <ul className="space-y-3 text-white/85">
+                  <li>
+                    <a
+                      href={SITE.whatsappBooking}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-lg font-medium hover:text-gold-soft transition-colors"
+                    >
+                      WhatsApp {SITE.phoneDisplay}
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href={`mailto:${SITE.email}`}
+                      className="text-lg font-medium hover:text-gold-soft transition-colors break-all"
+                    >
+                      {SITE.email}
+                    </a>
+                  </li>
+                  <li className="text-white/60 text-sm pt-2">
+                    {SITE.locations.join(" and ")}, {SITE.city}, {SITE.country}
+                  </li>
+                </ul>
+              </div>
+
+              <nav aria-label="Legal" className="menu-link" style={{ "--stagger": 8 } as React.CSSProperties}>
+                <ul className="flex flex-wrap gap-x-5 gap-y-2">
+                  {LEGAL_LINKS.map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        onClick={closeMenu}
+                        className="text-xs text-white/55 hover:text-gold-soft transition-colors"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
       )}
-    </header>
+
+      <SearchDialog open={searchOpen} onOpenChange={setSearchOpen} />
+    </>
   );
 }

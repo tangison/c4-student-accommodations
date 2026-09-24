@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
     dangerouslyAllowSVG: true,
     contentDispositionType: "attachment",
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    qualities: [55, 65, 75],
   },
   typescript: {
     ignoreBuildErrors: true,

@@ -27,13 +27,33 @@ export const SITE = {
   bookingYear: "2027",
 } as const;
 
+/** Primary site navigation (multi-page). Home lives in the wordmark. */
 export const NAV_LINKS = [
-  { href: "#tour", label: "The Rooms" },
-  { href: "#included", label: "What You Get" },
-  { href: "#outside", label: "The House" },
-  { href: "#book", label: "How To Book" },
-  { href: "#faq", label: "FAQ" },
-  { href: "#contact", label: "Contact" },
+  { href: "/rooms", label: "Rooms" },
+  { href: "/the-house", label: "The House" },
+  { href: "/gallery", label: "Gallery" },
+  { href: "/faq", label: "FAQ" },
+  { href: "/contact", label: "Contact" },
+] as const;
+
+/** Every page, for the menu takeover, search index and footer. */
+export const PAGES = [
+  { href: "/", label: "Home", note: "Start here" },
+  { href: "/rooms", label: "Rooms", note: "Furnished and made up" },
+  { href: "/the-house", label: "The House", note: "Khomasdal and Rocky Crest" },
+  { href: "/gallery", label: "Gallery", note: "Every photo we have" },
+  { href: "/book", label: "Book", note: "2027 bookings open" },
+  { href: "/faq", label: "FAQ", note: "Questions, answered" },
+  { href: "/contact", label: "Contact", note: "WhatsApp, call, email" },
+] as const;
+
+export const LEGAL_LINKS = [
+  { href: "/privacy", label: "Privacy Policy" },
+  { href: "/terms", label: "Terms & Conditions" },
+  { href: "/cookies", label: "Cookie Policy" },
+  { href: "/disclaimer", label: "Disclaimer" },
+  { href: "/accessibility", label: "Accessibility" },
+  { href: "/brand", label: "Brand" },
 ] as const;
 
 /**
@@ -126,10 +146,18 @@ export const OUTSIDE = [
   },
 ] as const;
 
-/**
- * The honest ledger: everything included in the monthly rate.
- * Two groups: what is in your room, and what the house handles.
- */
+/** The hero photo: the real house with its C4 sign. */
+export const HERO_PHOTO = {
+  src: "/photos/exterior-garage.webp",
+  alt: "The C4 student house with its sign, brick courtyard and Windhoek hills behind",
+  w: 1200,
+  h: 900,
+} as const;
+
+/** Full photo index for the gallery page and search. */
+export const GALLERY = [...TOUR, ...OUTSIDE] as const;
+
+/** The honest ledger: what is inside your room. */
 export const IN_ROOM = [
   "Fully furnished room",
   "Bunk beds with mattresses",
@@ -140,6 +168,7 @@ export const IN_ROOM = [
   "Hot water",
 ] as const;
 
+/** What the monthly rate handles for you. */
 export const IN_RATE = [
   "Fibre Wi-Fi throughout",
   "Free PC use for residents",
@@ -148,6 +177,60 @@ export const IN_RATE = [
   "Laundry service included",
   "Printing available at a small fee",
   "Paid shuttle and pre-booked student transport",
+] as const;
+
+/**
+ * Horizontal accordion slices: each one opens the house up.
+ * img: real photo revealed inside the expanded slice.
+ */
+export const RATE_SLICES = [
+  {
+    key: "wifi",
+    title: "Fibre Wi-Fi and a study area",
+    text: "Fibre runs through the whole house, with a dedicated study area and free PC use for residents. Online lectures and late-night research never stall.",
+    img: "/photos/bedroom.webp",
+    alt: "Student studying at a desk in a C4 bedroom",
+  },
+  {
+    key: "cleaning",
+    title: "Cleaning and laundry",
+    text: "Rooms are cleaned on schedule and laundry is part of the rate. Your focus stays on your books, not on the chores.",
+    img: "/photos/bathroom.webp",
+    alt: "Clean tiled bathroom at C4",
+  },
+  {
+    key: "kitchen",
+    title: "Kitchen and hot water",
+    text: "A full shared kitchen with stove, sink and prep space, stocked with crockery, cutlery, a microwave and a kettle. Hot water always on.",
+    img: "/photos/kitchen-a.webp",
+    alt: "Two residents preparing coffee in the shared C4 kitchen",
+  },
+  {
+    key: "transport",
+    title: "Transport and printing",
+    text: "A paid shuttle and pre-booked student transport cover the campus run. Printing is available at a small fee when deadlines stack up.",
+    img: "/photos/living-room.webp",
+    alt: "Residents relaxing in the C4 shared living room",
+  },
+] as const;
+
+/** Marquee facts: real, sourced from the booking terms. */
+export const MARQUEE = [
+  `${SITE.bookingYear} bookings now open`,
+  `${SITE.pricePerMonth} per person / month`,
+  `${SITE.deposit} deposit secures your spot`,
+  "Khomasdal",
+  "Rocky Crest",
+  "Fibre Wi-Fi",
+  "Cleaning included",
+  "Laundry included",
+] as const;
+
+export const FACTS = [
+  { value: SITE.pricePerMonth, label: "per person / month" },
+  { value: SITE.deposit, label: "deposit secures your spot" },
+  { value: "2", label: "locations: Khomasdal & Rocky Crest" },
+  { value: "14", label: "room and house essentials included" },
 ] as const;
 
 export const STEPS = [
@@ -166,13 +249,6 @@ export const STEPS = [
     title: "Move in ready",
     text: `Your room is furnished and made up before you arrive, for the ${SITE.bookingYear} academic year. Bring your personal items and books.`,
   },
-] as const;
-
-export const FACTS = [
-  { value: "N$2,800", label: "per person / month" },
-  { value: SITE.deposit, label: "deposit secures your spot" },
-  { value: "2", label: "locations: Khomasdal & Rocky Crest" },
-  { value: "14", label: "room and house essentials included" },
 ] as const;
 
 export const TESTIMONIALS = [
@@ -199,37 +275,74 @@ export const TESTIMONIALS = [
   },
 ] as const;
 
+/** FAQs with stable slugs for deep links and the search index. */
 export const FAQS = [
   {
+    slug: "how-to-book",
     q: "How do I book a room for 2027?",
     a: `Bookings for 2027 are now open. Tap any "Book Now" button on this site to chat with us on WhatsApp at ${SITE.phoneDisplay}, or email ${SITE.email}. A ${SITE.deposit} deposit secures your spot.`,
   },
   {
+    slug: "what-included",
     q: "What does the N$2,800 per month include?",
     a: "N$2,800 is per person (not per room) per month. It covers your fully furnished room, fibre Wi-Fi, room cleaning, laundry service, hot water and use of the study area and free PCs. Printing is available at an additional cost.",
   },
   {
+    slug: "is-c4-safe",
     q: "Is C4 safe?",
     a: "Safety is the foundation of C4. The house is secure, dedicated to students and managed by a caring on-site team, built to give parents full peace of mind.",
   },
   {
+    slug: "locations",
     q: "Where are the accommodations located?",
     a: "We have student stays in Khomasdal and Rocky Crest, Windhoek. Both are established residential areas with easy access to campuses, shops and student transport routes.",
   },
   {
+    slug: "transport",
     q: "Is transport available to campus?",
     a: "Yes. A paid shuttle service is available and student transport can be pre-booked, making the daily trip to campus simple and reliable.",
   },
   {
+    slug: "what-to-bring",
     q: "What should I bring with me?",
     a: "Rooms come fully furnished with beds, mattresses, bedding and linen, and the kitchen is equipped with crockery, cutlery, a microwave and kettle. Just bring your personal items, textbooks and ambitions.",
   },
   {
+    slug: "wifi-quality",
     q: "Is the Wi-Fi good enough for online classes?",
     a: "Yes. Fibre Wi-Fi runs throughout the property, and there is a dedicated study area plus free PC use for residents, so online lectures and research are never a struggle.",
   },
   {
+    slug: "deposit",
     q: "How does the deposit work?",
     a: `A ${SITE.deposit} deposit is required to secure your booking. Please WhatsApp or email us for the full booking terms and payment details.`,
+  },
+] as const;
+
+/** Search index entries for the command palette. */
+export const SEARCH_ENTRIES = [
+  ...PAGES.map((p) => ({
+    group: "Pages",
+    label: p.label,
+    hint: p.note,
+    href: p.href,
+  })),
+  ...FAQS.map((f) => ({
+    group: "Questions",
+    label: f.q,
+    hint: f.a.slice(0, 80) + "...",
+    href: `/faq#${f.slug}`,
+  })),
+  {
+    group: "Quick answers",
+    label: `Monthly rate: ${SITE.pricePerMonth}`,
+    hint: `Per person, ${SITE.deposit} deposit secures your spot`,
+    href: "/book",
+  },
+  {
+    group: "Quick answers",
+    label: "WhatsApp us",
+    hint: SITE.phoneDisplay,
+    href: SITE.whatsapp,
   },
 ] as const;

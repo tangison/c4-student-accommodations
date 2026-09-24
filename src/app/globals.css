@@ -18,12 +18,12 @@
   --color-ochre-deep: #834318;    /* Ochre shade, roof shadow */
   --color-cream: #F0EADD;         /* Gold pale tint */
   --color-ink: #0D1418;           /* Charcoal */
-  --color-warmgrey: #F7F6F3;      /* Warm plaster ground */
+  --color-bone: #FAF9F7;          /* Minimalism-era ground */
+  --color-warmgrey: #F3F1EC;      /* Warm plaster ground */
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-montserrat);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-outfit);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -60,9 +60,9 @@
 }
 
 :root {
-  --radius: 0.625rem;
+  --radius: 0.25rem;
   /* shadcn tokens remapped to C4 brand */
-  --background: #ffffff;
+  --background: #faf9f7;
   --foreground: #0d1418;
   --card: #ffffff;
   --card-foreground: #0d1418;
@@ -72,60 +72,26 @@
   --primary-foreground: #ffffff;
   --secondary: #f0eadd;
   --secondary-foreground: #684c14;
-  --muted: #f7f6f3;
+  --muted: #f3f1ec;
   --muted-foreground: #5c6660;
   --accent: #d9e2e3;
   --accent-foreground: #022e2e;
   --destructive: #b91c1c;
-  --border: #e4e6e3;
-  --input: #e4e6e3;
+  --border: #e7e4dd;
+  --input: #e7e4dd;
   --ring: #a1751f;
   --chart-1: #044747;
   --chart-2: #a1751f;
   --chart-3: #588787;
   --chart-4: #c1a56d;
   --chart-5: #9ab5b5;
-  --sidebar: #ffffff;
+  --sidebar: #faf9f7;
   --sidebar-foreground: #0d1418;
   --sidebar-primary: #044747;
   --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: #f0eadd;
   --sidebar-accent-foreground: #684c14;
-  --sidebar-border: #e4e6e3;
-  --sidebar-ring: #a1751f;
-}
-
-.dark {
-  --background: #0d1418;
-  --foreground: #f7f6f3;
-  --card: #0d1418;
-  --card-foreground: #f7f6f3;
-  --popover: #0d1418;
-  --popover-foreground: #f7f6f3;
-  --primary: #9ab5b5;
-  --primary-foreground: #022e2e;
-  --secondary: #022e2e;
-  --secondary-foreground: #d9e2e3;
-  --muted: #1a2226;
-  --muted-foreground: #9ab5b5;
-  --accent: #022e2e;
-  --accent-foreground: #d9e2e3;
-  --destructive: #ef4444;
-  --border: rgba(255, 255, 255, 0.12);
-  --input: rgba(255, 255, 255, 0.15);
-  --ring: #a1751f;
-  --chart-1: #9ab5b5;
-  --chart-2: #c1a56d;
-  --chart-3: #588787;
-  --chart-4: #d9c7a5;
-  --chart-5: #044747;
-  --sidebar: #0d1418;
-  --sidebar-foreground: #f7f6f3;
-  --sidebar-primary: #9ab5b5;
-  --sidebar-primary-foreground: #022e2e;
-  --sidebar-accent: #022e2e;
-  --sidebar-accent-foreground: #d9e2e3;
-  --sidebar-border: rgba(255, 255, 255, 0.12);
+  --sidebar-border: #e7e4dd;
   --sidebar-ring: #a1751f;
 }
 
@@ -147,7 +113,7 @@
     outline-offset: 2px;
   }
   ::selection {
-    background: var(--color-gold);
+    background: var(--color-brand);
     color: #fff;
   }
   input,
@@ -186,13 +152,94 @@
     -webkit-mask-size: 56px 56px;
     mask-size: 56px 56px;
   }
-  .breeze-tint {
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'><path fill='%23044747' fill-opacity='1' fill-rule='evenodd' d='M0 0h56v56H0V0Zm28 6a8 8 0 0 1 8 8c0 4.4-3.6 6-8 10-4.4-4-8-5.6-8-10a8 8 0 0 1 8-8Zm0 44a8 8 0 0 1-8-8c0-4.4 3.6-6 8-10 4.4 4 8 5.6 8 10a8 8 0 0 1-8 8ZM6 28a8 8 0 0 1 8-8c4.4 0 6 3.6 10 8-4 4.4-5.6 8-10 8a8 8 0 0 1-8-8Zm44 0a8 8 0 0 1-8 8c-4.4 0-6-3.6-10-8 4-4.4 5.6-8 10-8a8 8 0 0 1 8 8Z'/></svg>");
-    background-size: 56px 56px;
+
+  /* Tabular figures for prices, stats and phone numbers */
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+  /* Shared z-index scale: pill nav 50, menu 70, actions 80, agent 90, skip 100 */
+  .z-actions {
+    z-index: 80;
+  }
+  .z-agent {
+    z-index: 90;
+  }
+  /* Skip link for accessibility */
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 100;
+    background: var(--color-gold);
+    color: #fff;
+    padding: 0.75rem 1.25rem;
+    font-weight: 600;
+  }
+  .skip-link:focus {
+    left: 0;
   }
 
-  /* Gold check-mark list used in the included ledger.
-     Drawn SVG check via mask, one consistent stroke weight. */
+  /* Editorial display type: Outfit, wide containers, tight leading */
+  .display-1 {
+    font-size: clamp(2.75rem, 6vw, 5.5rem);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    font-weight: 600;
+  }
+  .display-2 {
+    font-size: clamp(2rem, 4.2vw, 3.5rem);
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+  }
+  .display-3 {
+    font-size: clamp(1.35rem, 2vw, 1.6rem);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+  }
+
+  /* Infinite marquee: one duplicated track, GPU translate, linear loop */
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 36s linear infinite;
+  }
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+      animation: none;
+    }
+  }
+
+  /* Full-screen menu link stagger (menu only, not scroll-linked) */
+  .menu-link {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  .menu-open .menu-link {
+    animation: menu-link-in 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: calc(var(--stagger, 0) * 55ms + 120ms);
+  }
+  @keyframes menu-link-in {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .menu-link {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+  }
+
+  /* Gold check-mark list */
   .check-list li {
     position: relative;
     padding-left: 1.75rem;
@@ -209,47 +256,10 @@
     -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>') center / contain no-repeat;
     mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>') center / contain no-repeat;
   }
-  /* Softer gold for check lists on dark teal surfaces */
   .check-list.on-dark li::before {
     background-color: var(--color-gold-soft);
   }
-  /* Tabular figures for prices, stats and phone numbers */
-  .tnum {
-    font-variant-numeric: tabular-nums;
-  }
-  /* Teal-tinted elevation: shadows carry the brand hue, never pure black */
-  .shadow-soft {
-    box-shadow:
-      0 1px 2px rgba(4, 71, 71, 0.05),
-      0 10px 30px -12px rgba(4, 71, 71, 0.14);
-  }
-  .shadow-lift {
-    box-shadow:
-      0 2px 4px rgba(4, 71, 71, 0.06),
-      0 18px 44px -16px rgba(4, 71, 71, 0.22);
-  }
-  /* Shared z-index scale: nav 50, actions 80, agent 90, skip 100 */
-  .z-actions {
-    z-index: 80;
-  }
-  .z-agent {
-    z-index: 90;
-  }
-  /* Skip link for accessibility */
-  .skip-link {
-    position: absolute;
-    left: -9999px;
-    top: 0;
-    z-index: 100;
-    background: var(--color-gold);
-    color: #fff;
-    padding: 0.75rem 1.25rem;
-    border-radius: 0 0 0.5rem 0;
-    font-weight: 600;
-  }
-  .skip-link:focus {
-    left: 0;
-  }
+
   /* Hero load-in: the page's one orchestrated moment.
      Staggered, ease-out, GPU-only, sub-500ms total. */
   .hero-in {
@@ -264,6 +274,7 @@
       transform: translateY(0);
     }
   }
+
   /* Reveal-on-scroll base state (activated by IntersectionObserver) */
   .reveal {
     opacity: 0;
@@ -286,10 +297,8 @@
       scroll-behavior: auto;
     }
   }
-  /* Print: everything visible, no animation */
   @media print {
-    .reveal,
-    .hero-in {
+    .reveal {
       opacity: 1 !important;
       transform: none !important;
     }
