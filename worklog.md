@@ -19,3 +19,26 @@ Stage Summary:
 - Site rebuilt to Windhoek vernacular design world with 100% client-owned imagery and logos.
 - Live on targis47: https://c4-student-accommodations.vercel.app
 - 18 skills installed per find-skills protocol; ledger at skills-ledger.md.
+
+---
+Task ID: 3
+Agent: Super Z (main agent)
+Task: podo taste-skill pass, antislop/identity audit, minimal nav + footer, caption-free images, plain WhatsApp icon, one-liner hero with cutouts, fewer pages, push and deploy
+
+Work Log:
+- Bootstrapped podo/design-agent-skills taste-skill (stub), cloned and read the full 1206-line Leonxlnx taste-skill; reconciled with gpt-taste (kept Cinematic Center hero per RNG + client preference + manifesto override).
+- Identity pass: hero one-liner "Your room is ready." with two resident cutouts; removed hero bottom decoration strip (banned pattern).
+- Nav: smaller pill (max-w-5xl, tighter padding, h-7/8 logo), 4 priority links (Rooms, Gallery, Book, Contact); The House and FAQ demoted to footer + menu + search.
+- Footer: ultra minimal with the on-dark logo straight on teal, one booking line, one page row, legal row, clean copyright bar.
+- Images: removed every caption overlay (bento, statement strip, rooms, the-house, gallery slider/grid/lightbox); expand affordance kept for gallery a11y.
+- WhatsApp widget: plain round official-glyph icon, conditional on scroll; scroll-to-top kept; both now driven by IntersectionObserver sentinels (window scroll listeners removed per taste-skill hard ban); header scroll state converted to IO sentinel too.
+- Content reduction: bento 12 to 8 cells (zero voids, grid-flow-dense); rate accordion moved from home to /rooms (dropdown system joins FAQ details, testimonial carousel, gallery slider).
+- Fixed .reveal bug: ScrollReveal moved to root layout and re-scans on pathname change (rooms page content was invisible).
+- Testimonial carousel: loop off, ring replaced with border (sliver bleed fix).
+- Performance: Geist Mono removed, hero q55, content images q65 (qualities config), 320px pill derivative for the inline heading image; mobile fresh load 427KB (under 500KB budget), desktop 709KB.
+- Audits: zero em dashes, zero uppercase eyebrows, captions gone, no scroll cues, no decorative dots, CTA intents unified ("Secure your room"), copyright verified (2026 + Tangison Studio credit), console clean, 20-route build green.
+- Pushed to GitHub (90da8fe); git-connected deployment auto-built on Targis and promoted; production domain alias re-pointed via CLI; deleted the stray "my-project" project created by an accidental pull; local .vercel link corrected.
+
+Stage Summary:
+- All routes 200 on https://c4-student-accommodations.vercel.app with the new identity live.
+- Targis account clean: single c4-student-accommodations project, git-connected, auto-deploys on push.
