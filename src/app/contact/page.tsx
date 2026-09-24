@@ -6,7 +6,7 @@ import { SITE } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Talk to C4 Student Accommodations: WhatsApp or call +264 81 437 8400, email c4studentstay@gmail.com. Khomasdal and Rocky Crest, Windhoek.",
+    "Talk to C4 Student Accommodations: WhatsApp or call +264 81 437 8400, email info@c4studentstay.com. Khomasdal and Rocky Crest, Windhoek.",
   alternates: { canonical: "/contact" },
 };
 

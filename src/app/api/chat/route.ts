@@ -44,7 +44,7 @@ const KB: { keywords: string[][]; answer: string }[] = [
   },
   {
     keywords: [["book", "booking", "apply", "register", "open", "availability", "available", "space", "room left"]],
-    answer: `2027 bookings are now open. Just tap any “Book Now” button on this site to chat with us on WhatsApp at +264 81 437 8400, or email c4studentstay@gmail.com. A N$2,000 deposit secures your spot.`,
+    answer: `2027 bookings are now open. Just tap any “Book Now” button on this site to chat with us on WhatsApp at +264 81 437 8400, or email info@c4studentstay.com. A N$2,000 deposit secures your spot.`,
   },
   {
     keywords: [["where", "location", "located", "address", "khomasdal", "rocky", "crest", "windhoek", "find you"]],
@@ -72,7 +72,7 @@ const KB: { keywords: string[][]; answer: string }[] = [
   },
   {
     keywords: [["contact", "whatsapp", "phone", "call", "email", "number", "speak", "human"]],
-    answer: `You can reach our team any time on WhatsApp or by calling +264 81 437 8400, or email c4studentstay@gmail.com. We reply fast.`,
+    answer: `You can reach our team any time on WhatsApp or by calling +264 81 437 8400, or email info@c4studentstay.com. We reply fast.`,
   },
   {
     keywords: [["hello", "hi", "hey", "good day", "molo", "how are you"]],

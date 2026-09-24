@@ -9,8 +9,8 @@ export const SITE = {
   tagline: "The only student stay that cares and matters",
   description:
     "Safe, secure and fully furnished student accommodation in Khomasdal & Rocky Crest, Windhoek. Fibre Wi-Fi, cleaning, laundry and transport included. 2027 bookings now open from N$2,800 per person per month.",
-  url: "https://c4-student-accommodations.vercel.app",
-  email: "c4studentstay@gmail.com",
+  url: "https://c4studentstay.com",
+  email: "info@c4studentstay.com",
   phoneDisplay: "+264 81 437 8400",
   phoneRaw: "+264814378400",
   whatsapp: "https://wa.me/264814378400",
@@ -71,11 +71,11 @@ export const TOUR = [
   },
   {
     src: "/photos/bedroom.webp",
-    alt: "Student studying at a desk next to a made-up bed in a C4 bedroom",
+    alt: "Navy bunk beds with made-up linen and under-bed storage in a C4 bedroom",
     caption: "The bedroom",
-    note: "Desk, bed and storage, made up before you arrive",
-    w: 1168,
-    h: 1280,
+    note: "Bunk beds, made up before you arrive",
+    w: 894,
+    h: 894,
   },
   {
     src: "/photos/kitchen-a.webp",
@@ -188,7 +188,7 @@ export const RATE_SLICES = [
     title: "Fibre Wi-Fi and a study area",
     text: "Fibre runs through the whole house, with a dedicated study area and free PC use for residents. Online lectures and late-night research never stall.",
     img: "/photos/bedroom.webp",
-    alt: "Student studying at a desk in a C4 bedroom",
+    alt: "Bunk beds made up in a C4 bedroom",
   },
   {
     key: "cleaning",
