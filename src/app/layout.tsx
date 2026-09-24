@@ -6,6 +6,7 @@ import { SiteHeader } from "@/components/site/header";
 import { SiteFooter } from "@/components/site/footer";
 import { FloatingActions } from "@/components/site/floating-actions";
 import { SiteMotion } from "@/components/site/motion";
+import { ScrollReveal } from "@/components/site/scroll-reveal";
 import { SITE } from "@/lib/site";
 
 const outfit = Outfit({
@@ -120,6 +121,7 @@ export default function RootLayout({
           <SiteFooter />
         </div>
         <FloatingActions />
+        <ScrollReveal />
         <SiteMotion />
         <Toaster />
       </body>

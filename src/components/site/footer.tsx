@@ -1,179 +1,82 @@
 import Image from "next/image";
 import Link from "next/link";
-import { MessageCircle, Mail, MapPin, Phone } from "lucide-react";
-import { NAV_LINKS, PAGES, LEGAL_LINKS, SITE } from "@/lib/site";
+import { PAGES, LEGAL_LINKS, SITE } from "@/lib/site";
 
 /**
- * SiteFooter: the Action block of every page, kept minimal. The bottom bar
- * carries the copyright and the Tangison Studio signature with no layout
- * hacks; mobile clearance for the floating stack is plain padding.
+ * SiteFooter: ultra minimal by design. The on-dark logo sits straight on
+ * the deep teal, one slim booking line, one row of links, one clean bottom
+ * bar carrying the copyright and the Tangison Studio signature.
  */
 export function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
     <footer role="contentinfo" className="bg-brand-deep text-white border-t border-brand">
-      {/* CTA band */}
-      <div className="relative overflow-hidden">
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 breeze-mask opacity-[0.05]"
-        />
-        <div className="relative max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-20 flex flex-col lg:flex-row lg:items-end justify-between gap-8">
-          <div>
-            <p className="text-gold-soft text-sm font-semibold">
-              {SITE.bookingYear} bookings now open
-            </p>
-            <p className="display-2 mt-3 text-white text-balance max-w-2xl">
-              Your room is ready for {SITE.bookingYear}.
-            </p>
-            <p className="mt-4 text-white/70 max-w-xl leading-relaxed">
-              From {SITE.pricePerMonth} per person per month, {SITE.deposit} deposit.
-              WhatsApp us and it is sorted the same day.
+      <div className="max-w-5xl mx-auto px-5 sm:px-8 pt-14 pb-6 sm:pt-16">
+        {/* Brand + one booking line */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+          <div className="flex items-center gap-5">
+            <Image
+              src="/c4-logo-ondark.svg"
+              unoptimized
+              alt={`${SITE.name} logo`}
+              width={176}
+              height={59}
+              loading="lazy"
+              className="h-10 sm:h-11 w-auto object-contain"
+            />
+            <p className="hidden md:block text-sm text-white/60 max-w-[24ch] leading-snug">
+              {SITE.tagline}.
             </p>
           </div>
-          <div className="flex flex-col sm:flex-row gap-3 shrink-0">
+          <p className="text-sm text-white/75">
+            {SITE.bookingYear} bookings open.{" "}
             <a
               href={SITE.whatsappBooking}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-white text-brand-deep font-semibold hover:bg-brand-pale active:translate-y-px transition-[background-color,transform] duration-200"
+              className="font-semibold text-white underline decoration-gold-soft decoration-2 underline-offset-4 hover:text-gold-soft transition-colors tnum"
             >
-              <MessageCircle className="w-5 h-5" aria-hidden="true" />
-              Secure your room
+              WhatsApp {SITE.phoneDisplay}
             </a>
-            <Link
-              href="/book"
-              className="inline-flex items-center justify-center px-7 py-4 rounded-full border border-white/30 text-white font-semibold hover:bg-white/10 active:translate-y-px transition-[background-color,transform] duration-200"
-            >
-              How booking works
-            </Link>
-          </div>
+          </p>
         </div>
-      </div>
 
-      {/* Directory */}
-      <div className="border-t border-white/10">
-        <div className="max-w-6xl mx-auto px-5 sm:px-8 py-12 grid grid-cols-2 md:grid-cols-4 gap-10">
-          <div className="col-span-2 md:col-span-1">
-            <div className="bg-white p-2 rounded inline-block mb-4">
-              <Image
-                src="/c4-logo.svg"
-                unoptimized
-                alt={`${SITE.name} logo`}
-                width={180}
-                height={60}
-                loading="lazy"
-                className="h-10 w-auto object-contain"
-              />
-            </div>
-            <p className="text-sm text-white/65 leading-relaxed">
-              {SITE.tagline}.
-            </p>
-          </div>
-
-          <nav aria-label="Footer navigation">
-            <h3 className="text-sm font-semibold text-gold-soft mb-4">Explore</h3>
-            <ul className="space-y-2.5">
-              {PAGES.filter((p) => p.href !== "/").map((page) => (
-                <li key={page.href}>
-                  <Link
-                    href={page.href}
-                    className="text-sm text-white/75 hover:text-gold-soft transition-colors"
-                  >
-                    {page.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          <div>
-            <h3 className="text-sm font-semibold text-gold-soft mb-4">Contact</h3>
-            <ul className="space-y-3 text-sm">
-              <li>
-                <a
-                  href={SITE.whatsapp}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2.5 text-white/75 hover:text-gold-soft transition-colors"
+        {/* One link row: every page */}
+        <nav aria-label="Footer navigation" className="mt-10 pt-6 border-t border-white/10">
+          <ul className="flex flex-wrap gap-x-6 gap-y-2">
+            {PAGES.map((page) => (
+              <li key={page.href}>
+                <Link
+                  href={page.href}
+                  className="text-sm text-white/75 hover:text-gold-soft transition-colors"
                 >
-                  <MessageCircle className="w-4 h-4 text-gold-soft shrink-0" aria-hidden="true" />
-                  WhatsApp
-                </a>
+                  {page.label}
+                </Link>
               </li>
-              <li>
-                <a
-                  href={`tel:${SITE.phoneRaw}`}
-                  className="flex items-center gap-2.5 text-white/75 hover:text-gold-soft transition-colors tnum"
+            ))}
+          </ul>
+          <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
+            {LEGAL_LINKS.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className="text-xs text-white/50 hover:text-gold-soft transition-colors"
                 >
-                  <Phone className="w-4 h-4 text-gold-soft shrink-0" aria-hidden="true" />
-                  {SITE.phoneDisplay}
-                </a>
+                  {link.label}
+                </Link>
               </li>
-              <li>
-                <a
-                  href={`mailto:${SITE.email}`}
-                  className="flex items-center gap-2.5 text-white/75 hover:text-gold-soft transition-colors break-all"
-                >
-                  <Mail className="w-4 h-4 text-gold-soft shrink-0" aria-hidden="true" />
-                  {SITE.email}
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-sm font-semibold text-gold-soft mb-4">Find us</h3>
-            <ul className="space-y-3 text-sm text-white/75">
-              {SITE.locations.map((loc) => (
-                <li key={loc} className="flex items-center gap-2.5">
-                  <MapPin className="w-4 h-4 text-gold-soft shrink-0" aria-hidden="true" />
-                  {loc}, {SITE.city}
-                </li>
-              ))}
-            </ul>
-            <nav aria-label="Site sections" className="mt-6 lg:hidden">
-              <ul className="space-y-2.5">
-                {NAV_LINKS.slice(0, 2).map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-white/75 hover:text-gold-soft transition-colors"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </div>
-
-      {/* Legal links */}
-      <div className="border-t border-white/10">
-        <nav aria-label="Legal" className="max-w-6xl mx-auto px-5 sm:px-8 py-5 flex flex-wrap gap-x-6 gap-y-2">
-          {LEGAL_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-xs text-white/60 hover:text-gold-soft transition-colors"
-            >
-              {link.label}
-            </Link>
-          ))}
+            ))}
+          </ul>
         </nav>
-      </div>
 
-      {/* Bottom bar: copyright + studio signature, one clean row */}
-      <div className="border-t border-white/10">
-        <div className="max-w-6xl mx-auto px-5 sm:px-8 pt-5 pb-24 sm:pb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
-          <p className="text-xs text-white/60">
+        {/* Bottom bar: copyright + studio signature, one clean row */}
+        <div className="mt-8 pt-5 pb-16 sm:pb-2 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+          <p className="text-xs text-white/55">
             &copy; <span className="copyright-year">{year}</span> {SITE.name}. All rights
             reserved.
           </p>
-          <p className="flex items-center gap-1.5 text-xs text-white/60">
+          <p className="flex items-center gap-1.5 text-xs text-white/55">
             <span>Made by</span>
             <a
               href="https://studio.tangison.com"

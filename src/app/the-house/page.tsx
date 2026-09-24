@@ -56,12 +56,9 @@ export default function TheHousePage() {
                 alt={photo.alt}
                 fill
                 sizes="(max-width: 1024px) 50vw, 25vw"
-          quality={65}
+                quality={65}
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
-              <figcaption className="absolute inset-x-0 bottom-0 p-4 text-sm font-medium text-white/90 bg-gradient-to-t from-brand-deep/85 to-transparent">
-                {photo.caption}
-              </figcaption>
             </figure>
           ))}
         </div>

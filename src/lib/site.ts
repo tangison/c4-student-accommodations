@@ -27,12 +27,11 @@ export const SITE = {
   bookingYear: "2027",
 } as const;
 
-/** Primary site navigation (multi-page). Home lives in the wordmark. */
+/** Primary site navigation (priority pages only; the rest live in the footer). */
 export const NAV_LINKS = [
   { href: "/rooms", label: "Rooms" },
-  { href: "/the-house", label: "The House" },
   { href: "/gallery", label: "Gallery" },
-  { href: "/faq", label: "FAQ" },
+  { href: "/book", label: "Book" },
   { href: "/contact", label: "Contact" },
 ] as const;
 

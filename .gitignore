@@ -15,3 +15,5 @@ agent-ctx/
 audit-shots/
 tsconfig.tsbuildinfo
 upload/
+tool-results/
+audit-shots/

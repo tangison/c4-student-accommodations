@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowUp } from "lucide-react";
 import { AiAgent } from "@/components/site/ai-agent";
 import { SITE } from "@/lib/site";
@@ -16,43 +16,51 @@ function WhatsAppGlyph({ className }: { className?: string }) {
 
 /**
  * FloatingActions: the fixed action stack, bottom right.
- * Order from the bottom: AI agent bubble, WhatsApp widget, scroll-to-top.
- * Each layer is 56px tall with a 20px gap so the stack never overlaps.
+ * Order from the bottom: AI agent bubble, WhatsApp icon, scroll-to-top.
+ * The WhatsApp widget is a plain round WhatsApp icon on the brand green,
+ * and it is conditional: it only appears once the visitor is actually
+ * scrolling the page (sentinel observed via IntersectionObserver, never a
+ * scroll listener).
  */
 export function FloatingActions() {
   const [deep, setDeep] = useState(false);
+  const sentinelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const onScroll = () => setDeep(window.scrollY > 560);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const sentinel = sentinelRef.current;
+    if (!sentinel || !("IntersectionObserver" in window)) return;
+    const io = new IntersectionObserver(
+      ([entry]) => setDeep(!entry.isIntersecting),
+      { threshold: 0 }
+    );
+    io.observe(sentinel);
+    return () => io.disconnect();
   }, []);
 
   return (
     <>
-      {/* WhatsApp widget: layer 2, above the agent bubble */}
+      {/* Sentinel 560px into the document: above it, the widgets show */}
+      <div ref={sentinelRef} aria-hidden="true" className="absolute top-[560px] h-px w-px" />
+
+      {/* WhatsApp widget: a plain WhatsApp icon, shown conditionally */}
       <a
         href={SITE.whatsappBooking}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Book now via WhatsApp"
-        className={`z-actions group fixed bottom-[6.25rem] right-6 flex h-12 w-12 items-center justify-center rounded-full bg-white text-[#25D366] border border-ink/10 shadow-lift hover:shadow-soft hover:-translate-y-0.5 transition-[opacity,transform,box-shadow] duration-300 ${
+        className={`z-actions fixed bottom-[6.25rem] right-6 flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lift hover:-translate-y-0.5 transition-[opacity,transform] duration-300 ${
           deep ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3 pointer-events-none"
         }`}
       >
         <WhatsAppGlyph className="w-6 h-6" />
-        <span className="pointer-events-none absolute right-full mr-3 whitespace-nowrap rounded-full bg-brand px-3 py-1.5 text-xs font-semibold text-white opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-200 hidden sm:block">
-          Book via WhatsApp
-        </span>
       </a>
 
-      {/* Scroll-to-top widget: layer 3, top of the stack */}
+      {/* Scroll-to-top widget: top of the stack */}
       <button
         type="button"
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         aria-label="Scroll back to top"
-        className={`z-actions fixed bottom-[11.25rem] right-6 flex h-12 w-12 items-center justify-center rounded-full bg-brand text-white border border-brand-deep shadow-lift hover:bg-brand-deep hover:-translate-y-0.5 transition-[opacity,transform,background-color,box-shadow] duration-300 ${
+        className={`z-actions fixed bottom-[11.25rem] right-6 flex h-12 w-12 items-center justify-center rounded-full bg-brand text-white shadow-lift hover:bg-brand-deep hover:-translate-y-0.5 transition-[opacity,transform,background-color] duration-300 ${
           deep ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3 pointer-events-none"
         }`}
       >

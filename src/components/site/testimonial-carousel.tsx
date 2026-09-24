@@ -67,7 +67,7 @@ export function TestimonialCarousel() {
                 <figcaption className="mt-8 flex items-center gap-4">
                   <span
                     aria-hidden="true"
-                    className="w-12 h-12 rounded-full bg-brand text-white font-semibold text-sm flex items-center justify-center ring-2 ring-gold ring-offset-2 ring-offset-bone shrink-0"
+                    className="w-12 h-12 rounded-full bg-brand text-white font-semibold text-sm flex items-center justify-center border-[3px] border-gold shrink-0"
                   >
                     {t.initials}
                   </span>

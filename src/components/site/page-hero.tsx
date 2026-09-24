@@ -29,7 +29,7 @@ export function PageHero({
           className="mt-8 inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white text-brand-deep font-semibold hover:bg-brand-pale active:translate-y-px transition-[background-color,transform] duration-200"
         >
           <MessageCircle className="w-5 h-5" aria-hidden="true" />
-          WhatsApp us about {SITE.bookingYear}
+          Secure your room
         </a>
       </div>
     </section>

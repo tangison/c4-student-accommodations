@@ -94,12 +94,11 @@ export function GalleryView() {
                   alt={photo.alt}
                   fill
                   sizes="(max-width: 640px) 86vw, 46vw"
-          quality={65}
+                  quality={65}
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
-                <span className="absolute inset-x-0 bottom-0 p-4 flex items-center justify-between text-white bg-gradient-to-t from-brand-deep/85 to-transparent">
-                  <span className="text-sm font-medium">{photo.caption}</span>
-                  <Expand className="w-4 h-4 opacity-80" aria-hidden="true" />
+                <span className="absolute bottom-3 right-3 flex items-center justify-center w-8 h-8 rounded-full bg-bone/90 backdrop-blur text-brand opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-300">
+                  <Expand className="w-4 h-4" aria-hidden="true" />
                 </span>
               </button>
             ))}
@@ -124,11 +123,11 @@ export function GalleryView() {
                   alt={photo.alt}
                   fill
                   sizes="(max-width: 768px) 50vw, 33vw"
-          quality={65}
+                  quality={65}
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
-                <span className="absolute inset-x-0 bottom-0 p-3 text-left text-xs sm:text-sm font-medium text-white bg-gradient-to-t from-brand-deep/85 to-transparent">
-                  {photo.caption}
+                <span className="absolute bottom-3 right-3 flex items-center justify-center w-8 h-8 rounded-full bg-bone/90 backdrop-blur text-brand opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-300">
+                  <Expand className="w-4 h-4" aria-hidden="true" />
                 </span>
               </button>
             ))}
@@ -184,13 +183,10 @@ export function GalleryView() {
               alt={GALLERY[lightbox].alt}
               fill
               sizes="100vw"
-          quality={65}
+              quality={65}
               className="object-contain"
               priority
             />
-            <figcaption className="absolute -bottom-9 inset-x-0 text-center text-sm text-white/70">
-              {GALLERY[lightbox].caption}
-            </figcaption>
           </figure>
         </div>
       )}

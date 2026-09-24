@@ -6,14 +6,15 @@ import { OUTSIDE } from "@/lib/site";
 /**
  * Statement: the Desire block. A scrubbing text reveal (gpt-taste GSAP
  * paradigm 1) followed by the exterior strip with image scale & fade
- * (paradigm 2). The data attributes are picked up by SiteMotion.
+ * (paradigm 2) and the couple cutout on the ground line. Photos carry no
+ * captions; the data attributes are picked up by SiteMotion.
  */
 export function Statement() {
   const strip = [OUTSIDE[2], OUTSIDE[1], OUTSIDE[0], OUTSIDE[3]];
 
   return (
-    <section aria-labelledby="statement-heading" className="bg-brand text-white py-28 md:py-44">
-      <div className="max-w-6xl mx-auto px-5 sm:px-8">
+    <section aria-labelledby="statement-heading" className="bg-brand text-white py-28 md:py-44 relative overflow-hidden">
+      <div className="max-w-6xl mx-auto px-5 sm:px-8 relative">
         <h2 id="statement-heading" className="sr-only">The promise</h2>
         <p
           data-scrub
@@ -45,16 +46,26 @@ export function Statement() {
                 src={photo.src}
                 alt={photo.alt}
                 fill
+                quality={65}
                 sizes="(max-width: 1024px) 50vw, 25vw"
-          quality={65}
                 className="object-cover will-change-transform"
               />
-              <figcaption className="absolute inset-x-0 bottom-0 p-4 text-sm font-medium text-white/90 bg-gradient-to-t from-brand-deep/85 to-transparent">
-                {photo.caption}
-              </figcaption>
             </figure>
           ))}
         </div>
+      </div>
+
+      {/* Resident cutout on the ground line, storytelling without captions */}
+      <div aria-hidden="true" className="absolute bottom-0 right-6 lg:right-16 hidden lg:block">
+        <Image
+          src="/cutouts/couple-walking.webp"
+          alt=""
+          width={520}
+          height={1290}
+          sizes="180px"
+          quality={65}
+          className="h-[46svh] w-auto object-contain object-bottom drop-shadow-[0_18px_24px_rgba(2,46,46,0.4)]"
+        />
       </div>
     </section>
   );

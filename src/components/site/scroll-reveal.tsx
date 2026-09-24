@@ -1,11 +1,15 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 /**
  * Activates the `.reveal` CSS class: elements marked with it fade/slide in
  * when they enter the viewport. Respects prefers-reduced-motion (handled in
  * CSS: elements stay visible when motion is reduced).
+ *
+ * Lives in the root layout and re-scans on every route change, so any page
+ * can use `.reveal` safely.
  *
  * Robustness rules:
  * 1. Elements already within 1.5 viewport heights on load are revealed
@@ -14,8 +18,10 @@ import { useEffect } from "react";
  *    stuck invisible (full-page screenshots, print, background tabs, bots).
  */
 export function ScrollReveal() {
+  const pathname = usePathname();
+
   useEffect(() => {
-    const els = Array.from(document.querySelectorAll<HTMLElement>(".reveal"));
+    const els = Array.from(document.querySelectorAll<HTMLElement>(".reveal:not(.revealed)"));
     if (els.length === 0) return;
 
     const reveal = (el: HTMLElement) => el.classList.add("revealed");
@@ -57,7 +63,7 @@ export function ScrollReveal() {
       clearTimeout(safety);
       io.disconnect();
     };
-  }, []);
+  }, [pathname]);
 
   return null;
 }

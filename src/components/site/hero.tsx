@@ -4,12 +4,13 @@ import { HERO_PHOTO, SITE } from "@/lib/site";
 
 /**
  * Hero: Cinematic Center (gpt-taste RNG pick). The real house fills the
- * screen behind a deep teal wash; one wide headline, exactly two CTAs.
- * No badges, no pill tags, no raw stats here.
+ * screen behind a deep teal wash; one one-line headline, exactly two CTAs,
+ * two resident cutouts anchored to the ground line. No badges, no pill
+ * tags, no raw stats, no bottom decoration strip.
  */
 export function Hero() {
   return (
-    <section className="relative min-h-[94svh] flex items-end sm:items-center justify-center overflow-hidden">
+    <section className="relative min-h-[94svh] flex items-center justify-center overflow-hidden">
       {/* The real house, full bleed */}
       <Image
         src={HERO_PHOTO.src}
@@ -30,21 +31,44 @@ export function Hero() {
         className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-brand-deep/85 to-transparent"
       />
 
-      {/* Center stage */}
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 pt-36 pb-24 sm:pt-40 sm:pb-32 text-center">
+      {/* Resident cutouts, client assets without background, on the ground line */}
+      <div aria-hidden="true" className="absolute bottom-0 left-4 sm:left-14 lg:left-24 hidden sm:block">
+        <Image
+          src="/cutouts/student-backpack.webp"
+          alt=""
+          width={462}
+          height={1270}
+          sizes="200px"
+          quality={65}
+          className="h-[38svh] lg:h-[50svh] w-auto object-contain object-bottom drop-shadow-[0_18px_24px_rgba(2,46,46,0.35)]"
+        />
+      </div>
+      <div aria-hidden="true" className="absolute bottom-0 right-4 sm:right-14 lg:right-24 hidden md:block">
+        <Image
+          src="/cutouts/student-mug.webp"
+          alt=""
+          width={360}
+          height={1232}
+          sizes="160px"
+          quality={65}
+          className="h-[34svh] lg:h-[45svh] w-auto object-contain object-bottom drop-shadow-[0_18px_24px_rgba(2,46,46,0.35)]"
+        />
+      </div>
+
+      {/* Center stage: one line, two CTAs */}
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 pt-28 pb-20 sm:pb-24 text-center">
         <h1
-          className="display-1 text-white text-balance hero-in"
+          className="display-1 text-white hero-in"
           style={{ "--stagger": 0 } as React.CSSProperties}
         >
-          A safe second home for students in Windhoek
+          Your room is ready.
         </h1>
         <p
-          className="hero-in mx-auto mt-6 max-w-2xl text-lg sm:text-xl text-white/85 leading-relaxed text-pretty"
+          className="hero-in mx-auto mt-6 max-w-xl text-lg sm:text-xl text-white/85 leading-relaxed"
           style={{ "--stagger": 1 } as React.CSSProperties}
         >
-          Fully furnished rooms in Khomasdal and Rocky Crest with fibre Wi-Fi,
-          cleaning, laundry and a caring on-site team, so you can focus on your
-          studies.
+          Safe, fully furnished student stays in Khomasdal and Rocky Crest.
+          2027 bookings are open.
         </p>
         <div
           className="hero-in mt-9 flex flex-col sm:flex-row justify-center gap-3.5"
@@ -67,15 +91,6 @@ export function Hero() {
           </a>
         </div>
       </div>
-
-      {/* Location line, anchored to the bottom edge */}
-      <p
-        aria-hidden="true"
-        className="hero-in hidden sm:block absolute bottom-6 left-1/2 -translate-x-1/2 text-xs font-medium tracking-wide text-white/55 z-10"
-        style={{ "--stagger": 3 } as React.CSSProperties}
-      >
-        {SITE.locations.join("  ")} &middot; {SITE.city}, {SITE.country}
-      </p>
     </section>
   );
 }

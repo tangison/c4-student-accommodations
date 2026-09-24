@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { PageHero, PageCta } from "@/components/site/page-hero";
+import { RateAccordion } from "@/components/site/rate-accordion";
 import { TOUR, IN_ROOM, SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -27,15 +28,11 @@ export default function RoomsPage() {
                   src={photo.src}
                   alt={photo.alt}
                   fill
+                  quality={65}
                   sizes="(max-width: 640px) 100vw, 50vw"
-          quality={65}
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
               </div>
-              <figcaption className="p-5">
-                <p className="font-semibold text-brand">{photo.caption}</p>
-                <p className="text-sm text-ink/60 mt-1">{photo.note}</p>
-              </figcaption>
             </figure>
           ))}
         </div>
@@ -67,11 +64,11 @@ export default function RoomsPage() {
                 {SITE.pricePerMonth}
               </p>
               <p className="mt-2 text-white/70">
-                per person / month &middot; {SITE.deposit} deposit
+                per person / month, {SITE.deposit} deposit
               </p>
               <div className="mt-8 border-t border-white/15 pt-6 space-y-2 text-sm text-white/75">
-                <p>Rate covers the room, Wi-Fi, cleaning, laundry, hot water and the study area.</p>
-                <p>Share the room with one housemate or ask us about current availability.</p>
+                <p>The rate covers the room, Wi-Fi, cleaning, laundry, hot water and the study area.</p>
+                <p>Share the room with one housemate, or ask us about current availability.</p>
               </div>
               <a
                 href={SITE.whatsappBooking}
@@ -79,12 +76,14 @@ export default function RoomsPage() {
                 rel="noopener noreferrer"
                 className="mt-8 inline-flex items-center justify-center w-full px-7 py-4 rounded-full bg-white text-brand-deep font-semibold hover:bg-brand-pale active:translate-y-px transition-[background-color,transform] duration-200"
               >
-                Ask about a room on WhatsApp
+                Secure your room
               </a>
             </div>
           </div>
         </div>
       </section>
+
+      <RateAccordion />
 
       <PageCta text="Want to see the rooms in person? We will walk you through the house on a quick call." />
     </>
