@@ -3,19 +3,19 @@ import { SITE } from "@/lib/site";
 
 export const runtime = "nodejs";
 
-const SYSTEM_PROMPT = `You are the C4 Assistant, a friendly AI helper for ${SITE.name}, a student accommodation business for female students in Windhoek, Namibia.
+const SYSTEM_PROMPT = `You are the C4 Assistant, a friendly AI helper for ${SITE.name}, a dedicated student accommodation business in Windhoek, Namibia.
 
 Your role: answer questions from website visitors about rooms, pricing, locations, amenities and bookings. Be warm, concise and professional.
 
 About the business:
 - Name: ${SITE.name}
-- Industry: dedicated female student accommodation
+- Industry: dedicated student accommodation
 - Locations: Khomasdal and Rocky Crest, Windhoek, Namibia
 - Price: ${SITE.pricePerMonth} per person per month (NOT per room)
 - Deposit: ${SITE.deposit} required to secure a booking
 - Bookings: ${SITE.bookingYear} bookings are now open
 - Amenities: fully furnished rooms, double bunk beds, mattresses/bedding/linen, charging cables, crockery & cutlery, iron & ironing board, microwave & kettle, hot water, room cleaning, laundry service, fibre Wi-Fi, free PC use, dedicated study area, printing at an additional cost, paid shuttle service and pre-booked student transport
-- Environment: safe, secure, dedicated to female students, student-focused
+- Environment: safe, secure, student-focused, managed by a caring on-site team
 - Contact email: ${SITE.email}
 - Phone/WhatsApp: ${SITE.phoneRaw}
 - Tagline: "The only student stay that cares and matters"
@@ -51,8 +51,8 @@ const KB: { keywords: string[][]; answer: string }[] = [
     answer: `We have student stays in Khomasdal and Rocky Crest, Windhoek. Both are safe residential areas with easy access to campuses, shops and student transport routes.`,
   },
   {
-    keywords: [["female", "girls", "women", "boy", "male", "gender", "only"]],
-    answer: `Yes. C4 is dedicated accommodation for female students, built around safety, security and a student-focused environment.`,
+    keywords: [["safe", "safety", "security", "secure", "parent", "worried"]],
+    answer: `Safety is our priority: C4 is a secure, dedicated student environment managed by a caring on-site team. It's built to give parents full peace of mind.`,
   },
   {
     keywords: [["wifi", "wi-fi", "internet", "fibre", "fiber", "pc", "computer", "study", "printing", "print"]],
@@ -69,10 +69,6 @@ const KB: { keywords: string[][]; answer: string }[] = [
   {
     keywords: [["clean", "laundry", "washing", "chores"]],
     answer: `Room cleaning and a laundry service are both included in your monthly rate, so you can focus entirely on your studies.`,
-  },
-  {
-    keywords: [["safe", "safety", "security", "secure", "parent", "worried"]],
-    answer: `Safety is our priority: C4 is a secure, dedicated female-only student environment managed by a caring team. It's built to give parents full peace of mind.`,
   },
   {
     keywords: [["contact", "whatsapp", "phone", "call", "email", "number", "speak", "human"]],

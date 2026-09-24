@@ -1,0 +1,56 @@
+{
+    "bin": {
+        "id": "tk10k98vv7vp61nq",
+        "readonly": false,
+        "bytes": 7344879,
+        "bytes_readable": "7.3 MB",
+        "files": 3,
+        "updated_at": "2026-09-24T00:45:22.091363Z",
+        "updated_at_relative": "33 minutes ago",
+        "created_at": "2026-09-24T00:43:43.241675Z",
+        "created_at_relative": "35 minutes ago",
+        "expired_at": "2026-10-01T00:45:22.091362Z",
+        "expired_at_relative": "6 days from now"
+    },
+    "files": [
+        {
+            "filename": "C4-Hero-Assets-Cutouts.zip",
+            "content-type": "application/zip",
+            "bytes": 723251,
+            "bytes_readable": "723 kB",
+            "md5": "I/5oE/Us7+Hkq1K9JRLJWg==",
+            "sha1": "221cdd6166d2f2592f1d5ce603b10bb770b243f1",
+            "sha256": "7ae7721f25ec5ec585357660b6d5616bfbf779706afe9c58cdf626c37cca3afc",
+            "updated_at": "2026-09-24T00:43:44.384134Z",
+            "updated_at_relative": "35 minutes ago",
+            "created_at": "2026-09-24T00:43:44.384134Z",
+            "created_at_relative": "35 minutes ago"
+        },
+        {
+            "filename": "C4-Individual-Photos.zip",
+            "content-type": "application/zip",
+            "bytes": 6406471,
+            "bytes_readable": "6.4 MB",
+            "md5": "qg8JqhjzSKLrUL6k2qdNaw==",
+            "sha1": "d77b0f003a9764ee2e0b11744701be9ce116188b",
+            "sha256": "44f6c962b0f8481d018c4d321d341c44a38ce445fb785b054b3c72518fd4520f",
+            "updated_at": "2026-09-24T00:43:46.817526Z",
+            "updated_at_relative": "35 minutes ago",
+            "created_at": "2026-09-24T00:43:46.817526Z",
+            "created_at_relative": "35 minutes ago"
+        },
+        {
+            "filename": "Tangison-Studio-Skills-Pack_v1.0.zip",
+            "content-type": "application/zip",
+            "bytes": 215157,
+            "bytes_readable": "215 kB",
+            "md5": "0yG3q3PxwWD4FAzVVhEabA==",
+            "sha1": "f7c6b7efcdd4f734ffae8d79444e5cf0e5756263",
+            "sha256": "a54f94cb7a40afb935dc6cab54c56175fedcfcb9c3bc547302bfd2400406cf6f",
+            "updated_at": "2026-09-24T00:45:22.088707Z",
+            "updated_at_relative": "33 minutes ago",
+            "created_at": "2026-09-24T00:45:22.088707Z",
+            "created_at_relative": "33 minutes ago"
+        }
+    ]
+}

@@ -7,7 +7,8 @@ export default function NotFound() {
     <div className="min-h-[70vh] flex flex-col items-center justify-center text-center px-4 py-20 bg-warmgrey">
       <Link href="/" aria-label="C4 Student Accommodations home" className="mb-8">
         <Image
-          src="/logo.png"
+          src="/c4-logo.svg"
+              unoptimized
           alt="C4 Student Accommodations CC logo"
           width={220}
           height={74}

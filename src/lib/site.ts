@@ -8,7 +8,7 @@ export const SITE = {
   shortName: "C4 Student Accommodations",
   tagline: "The only student stay that cares and matters",
   description:
-    "Safe, secure and fully furnished student accommodation for female students in Khomasdal & Rocky Crest, Windhoek. Fibre Wi-Fi, cleaning, laundry and transport. 2027 bookings now open from N$2,800 per person per month.",
+    "Safe, secure and fully furnished student accommodation in Khomasdal & Rocky Crest, Windhoek. Fibre Wi-Fi, cleaning, laundry and transport included. 2027 bookings now open from N$2,800 per person per month.",
   url: "https://c4-student-accommodations.vercel.app",
   email: "c4studentstay@gmail.com",
   phoneDisplay: "+264 81 437 8400",
@@ -28,87 +28,152 @@ export const SITE = {
 } as const;
 
 export const NAV_LINKS = [
-  { href: "#home", label: "Home" },
-  { href: "#about", label: "About" },
-  { href: "#amenities", label: "What You Get" },
-  { href: "#gallery", label: "Gallery" },
+  { href: "#tour", label: "The Rooms" },
+  { href: "#included", label: "What You Get" },
+  { href: "#outside", label: "The House" },
+  { href: "#book", label: "How To Book" },
   { href: "#faq", label: "FAQ" },
   { href: "#contact", label: "Contact" },
 ] as const;
 
-export const AMENITIES = [
+/**
+ * Real interior photographs of the C4 stay (supplied by the client).
+ * src: processed 2x WebP derivatives in /public/photos.
+ * aspect: intrinsic w/h ratio of the processed file, for layout.
+ */
+export const TOUR = [
   {
-    title: "Comfortable Living",
-    accent: "teal" as const,
-    items: [
-      "Fully furnished rooms",
-      "Double bunk beds",
-      "Mattresses, bedding & linen",
-      "Charging cables",
-      "Crockery & cutlery",
-      "Iron & ironing board",
-      "Microwave & kettle",
-      "Hot water",
-    ],
+    src: "/photos/living-room.webp",
+    alt: "Residents relaxing on a couch in the C4 shared living room",
+    caption: "The living room",
+    note: "Common space to unwind after class",
+    w: 1168,
+    h: 1280,
   },
   {
-    title: "Study & Connectivity",
-    accent: "gold" as const,
-    items: [
-      "Fibre Wi-Fi throughout",
-      "FREE PC use for residents",
-      "Dedicated study area",
-      "Printing available (small fee)",
-    ],
+    src: "/photos/bedroom.webp",
+    alt: "Student studying at a desk next to a made-up bed in a C4 bedroom",
+    caption: "The bedroom",
+    note: "Desk, bed and storage, made up before you arrive",
+    w: 1168,
+    h: 1280,
   },
   {
-    title: "Clean & Convenient",
-    accent: "teal" as const,
-    items: [
-      "Regular room cleaning",
-      "Laundry service included",
-      "Well-maintained environment",
-    ],
+    src: "/photos/kitchen-a.webp",
+    alt: "Two residents preparing coffee in the shared C4 kitchen",
+    caption: "The kitchen",
+    note: "Cook, brew, share a table with the house",
+    w: 1168,
+    h: 1142,
   },
   {
-    title: "Transport",
-    accent: "gold" as const,
-    items: [
-      "Paid shuttle service available",
-      "Pre-booked student transport",
-      "Easy access to campus routes",
-    ],
+    src: "/photos/kitchen-b.webp",
+    alt: "Residents chatting over the stove in the C4 kitchen",
+    caption: "The kitchen, second angle",
+    note: "Full stove, sink and prep space",
+    w: 1164,
+    h: 1142,
   },
   {
-    title: "Safe & Secure",
-    accent: "teal" as const,
-    items: [
-      "Secure, dedicated female accommodation",
-      "Safe, student-focused environment",
-      "Managed by a caring on-site team",
-    ],
+    src: "/photos/bathroom.webp",
+    alt: "Clean tiled bathroom with shower and bath at C4",
+    caption: "The bathroom",
+    note: "Shower over bath, cleaned on schedule",
+    w: 1176,
+    h: 1280,
   },
   {
-    title: "A Place That Cares",
-    accent: "gold" as const,
-    items: [
-      "The only stay that cares and matters",
-      "Supportive, family-style community",
-      "An environment built for your success",
-    ],
+    src: "/photos/toilet.webp",
+    alt: "Clean separate toilet with basin at C4",
+    caption: "The guest loo",
+    note: "Separate and always guest-ready",
+    w: 1168,
+    h: 1142,
   },
-];
+] as const;
 
-export const GALLERY = [
-  { src: "/images/room-bunk-beds.jpg", alt: "Furnished student room with bunk beds and study desk", caption: "Furnished rooms with bunk beds" },
-  { src: "/images/room-cozy.jpg", alt: "Cozy student bedroom with study desk and shelving", caption: "A cosy space of your own" },
-  { src: "/images/study-session.jpg", alt: "Two students studying together with a laptop", caption: "Study together, pass together" },
-  { src: "/images/shared-kitchen.jpg", alt: "Bright shared kitchen with dining table", caption: "Shared kitchen & dining" },
-  { src: "/images/kitchenette.jpg", alt: "Compact kitchenette with wooden accents", caption: "Fully equipped kitchenette" },
-  { src: "/images/laundry.jpg", alt: "Modern washing machine and dryer", caption: "Laundry taken care of" },
-  { src: "/images/room-bright.jpg", alt: "Bright bedroom with two beds and natural light", caption: "Bright, airy bedrooms" },
-  { src: "/images/building-twilight.jpg", alt: "Student residence building glowing at twilight", caption: "Home that feels safe" },
-];
+/**
+ * Real exterior photographs of the C4 house and its streets.
+ */
+export const OUTSIDE = [
+  {
+    src: "/photos/exterior-path.webp",
+    alt: "Brick pathway and trees along the side of the C4 house",
+    caption: "The side path",
+    w: 1168,
+    h: 1166,
+  },
+  {
+    src: "/photos/exterior-roof.webp",
+    alt: "Red tiled roof of the C4 house against the Windhoek hills",
+    caption: "The roofline",
+    w: 1162,
+    h: 1252,
+  },
+  {
+    src: "/photos/exterior-entrance.webp",
+    alt: "Resident arriving at the C4 front entrance with plants beside the door",
+    caption: "The front door",
+    w: 1188,
+    h: 1166,
+  },
+  {
+    src: "/photos/exterior-dishes.webp",
+    alt: "Clear blue sky over the C4 roof and its satellite dishes",
+    caption: "Windhoek sky",
+    w: 1166,
+    h: 1252,
+  },
+] as const;
+
+/**
+ * The honest ledger: everything included in the monthly rate.
+ * Two groups: what is in your room, and what the house handles.
+ */
+export const IN_ROOM = [
+  "Fully furnished room",
+  "Bunk beds with mattresses",
+  "Bedding and linen provided",
+  "Study desk and charging cables",
+  "Crockery, cutlery, microwave, kettle",
+  "Iron and ironing board",
+  "Hot water",
+] as const;
+
+export const IN_RATE = [
+  "Fibre Wi-Fi throughout",
+  "Free PC use for residents",
+  "Dedicated study area",
+  "Room cleaning on schedule",
+  "Laundry service included",
+  "Printing available at a small fee",
+  "Paid shuttle and pre-booked student transport",
+] as const;
+
+export const STEPS = [
+  {
+    n: "1",
+    title: "Message us",
+    text: "Tap any WhatsApp button on this site and tell us which year you are booking for. We answer fast and can walk you through the rooms.",
+  },
+  {
+    n: "2",
+    title: "Secure with a deposit",
+    text: `A ${SITE.deposit} deposit locks your spot. We confirm the details with you directly on WhatsApp or by email.`,
+  },
+  {
+    n: "3",
+    title: "Move in ready",
+    text: `Your room is furnished and made up before you arrive, for the ${SITE.bookingYear} academic year. Bring your personal items and books.`,
+  },
+] as const;
+
+export const FACTS = [
+  { value: "N$2,800", label: "per person / month" },
+  { value: SITE.deposit, label: "deposit secures your spot" },
+  { value: "2", label: "locations: Khomasdal & Rocky Crest" },
+  { value: "14", label: "room and house essentials included" },
+] as const;
 
 export const TESTIMONIALS = [
   {
@@ -120,7 +185,7 @@ export const TESTIMONIALS = [
   },
   {
     quote:
-      "As a parent, safety was my biggest worry. The C4 team treats the girls like family and I can finally relax knowing where my daughter stays.",
+      "As a parent, safety was my biggest worry. The C4 team treats the residents like family and I can finally relax knowing where my daughter stays.",
     name: "M. van Wyk",
     role: "Parent, Windhoek",
     initials: "MW",
@@ -132,24 +197,24 @@ export const TESTIMONIALS = [
     role: "NUST Student",
     initials: "RB",
   },
-];
+] as const;
 
 export const FAQS = [
   {
     q: "How do I book a room for 2027?",
-    a: "Bookings for 2027 are now open. Simply tap any “Book Now” button on this site to chat with us on WhatsApp at +264 81 437 8400, or email c4studentstay@gmail.com. A N$2,000 deposit secures your spot.",
+    a: `Bookings for 2027 are now open. Tap any "Book Now" button on this site to chat with us on WhatsApp at ${SITE.phoneDisplay}, or email ${SITE.email}. A ${SITE.deposit} deposit secures your spot.`,
   },
   {
     q: "What does the N$2,800 per month include?",
-    a: "N$2,800 is per person (not per room) per month and covers your fully furnished room, fibre Wi-Fi, room cleaning, laundry service, hot water and use of the study area and free PCs. Printing is available at an additional cost.",
+    a: "N$2,800 is per person (not per room) per month. It covers your fully furnished room, fibre Wi-Fi, room cleaning, laundry service, hot water and use of the study area and free PCs. Printing is available at an additional cost.",
   },
   {
-    q: "Is C4 only for female students?",
-    a: "Yes. C4 is dedicated accommodation for female students, built around safety, security and a student-focused environment where parents can have peace of mind.",
+    q: "Is C4 safe?",
+    a: "Safety is the foundation of C4. The house is secure, dedicated to students and managed by a caring on-site team, built to give parents full peace of mind.",
   },
   {
     q: "Where are the accommodations located?",
-    a: "We have student stays in Khomasdal and Rocky Crest, Windhoek. Both are safe residential areas with easy access to campuses, shops and student transport routes.",
+    a: "We have student stays in Khomasdal and Rocky Crest, Windhoek. Both are established residential areas with easy access to campuses, shops and student transport routes.",
   },
   {
     q: "Is transport available to campus?",
@@ -157,7 +222,7 @@ export const FAQS = [
   },
   {
     q: "What should I bring with me?",
-    a: "Rooms come fully furnished with bunk beds, mattresses, bedding and linen, and the kitchen is equipped with crockery, cutlery, a microwave and kettle. Just bring your personal items, textbooks and ambitions.",
+    a: "Rooms come fully furnished with beds, mattresses, bedding and linen, and the kitchen is equipped with crockery, cutlery, a microwave and kettle. Just bring your personal items, textbooks and ambitions.",
   },
   {
     q: "Is the Wi-Fi good enough for online classes?",
@@ -165,13 +230,6 @@ export const FAQS = [
   },
   {
     q: "How does the deposit work?",
-    a: "A N$2,000 deposit is required to secure your booking. Please WhatsApp or email us for the full booking terms and payment details.",
+    a: `A ${SITE.deposit} deposit is required to secure your booking. Please WhatsApp or email us for the full booking terms and payment details.`,
   },
-];
-
-export const STATS = [
-  { value: "2", label: "Locations: Khomasdal & Rocky Crest" },
-  { value: "100%", label: "Dedicated to female students" },
-  { value: "N$2,800", label: "Per person / month, essentials included" },
-  { value: "2027", label: "Bookings now open" },
-];
+] as const;

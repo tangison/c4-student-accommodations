@@ -51,7 +51,8 @@ export default function BrandPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="rounded-xl border border-border bg-white p-6 flex items-center justify-center min-h-36">
               <Image
-                src="/logo.png"
+                src="/c4-logo.svg"
+              unoptimized
                 alt="C4 Student Accommodations logo for light backgrounds"
                 width={180}
                 height={60}
@@ -60,7 +61,8 @@ export default function BrandPage() {
             </div>
             <div className="rounded-xl bg-brand p-6 flex items-center justify-center min-h-36">
               <Image
-                src="/logo-ondark.png"
+                src="/c4-logo-ondark.svg"
+              unoptimized
                 alt="C4 Student Accommodations logo for dark backgrounds"
                 width={180}
                 height={60}

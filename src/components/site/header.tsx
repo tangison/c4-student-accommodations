@@ -47,7 +47,8 @@ export function SiteHeader() {
           {/* Logo */}
           <a href="#home" className="flex-shrink-0 flex items-center" aria-label={`${SITE.name} home`}>
             <Image
-              src="/logo.png"
+              src="/c4-logo.svg"
+              unoptimized
               alt={`${SITE.name} logo`}
               width={176}
               height={59}

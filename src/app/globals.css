@@ -5,7 +5,7 @@
 
 @theme inline {
   /* ---------- C4 brand palette (official brand guidelines) ---------- */
-  --color-brand: #044747;         /* Deep Teal, primary */
+  --color-brand: #044747;         /* Deep Teal, primary ink */
   --color-brand-deep: #022E2E;    /* Teal shade */
   --color-brand-mist: #588787;    /* Teal tint */
   --color-brand-fog: #9AB5B5;     /* Teal tint */
@@ -14,9 +14,11 @@
   --color-gold-deep: #684C14;     /* Gold shade */
   --color-gold-soft: #C1A56D;     /* Gold tint */
   --color-gold-pale: #D9C7A5;     /* Gold tint */
+  --color-ochre: #D1782C;         /* The house plaster, sampled from the real building */
+  --color-ochre-deep: #834318;    /* Ochre shade, roof shadow */
   --color-cream: #F0EADD;         /* Gold pale tint */
   --color-ink: #0D1418;           /* Charcoal */
-  --color-warmgrey: #F7F6F3;      /* Warm grey background */
+  --color-warmgrey: #F7F6F3;      /* Warm plaster ground */
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -137,6 +139,8 @@
   }
   body {
     @apply bg-background text-foreground;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
   }
   :focus-visible {
     outline: 2px solid var(--color-gold);
@@ -165,10 +169,29 @@
       background: transparent;
     }
   }
+  summary {
+    cursor: pointer;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
 }
 
 @layer utilities {
-  /* Gold check-mark list used across amenity cards.
+  /* Breeze-block screen: the signature device, drawn from Windhoek's
+     boundary walls. A perforated geometry used as a mask or a tint. */
+  .breeze-mask {
+    -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'><path fill='%23000' fill-rule='evenodd' d='M0 0h56v56H0V0Zm28 6a8 8 0 0 1 8 8c0 4.4-3.6 6-8 10-4.4-4-8-5.6-8-10a8 8 0 0 1 8-8Zm0 44a8 8 0 0 1-8-8c0-4.4 3.6-6 8-10 4.4 4 8 5.6 8 10a8 8 0 0 1-8 8ZM6 28a8 8 0 0 1 8-8c4.4 0 6 3.6 10 8-4 4.4-5.6 8-10 8a8 8 0 0 1-8-8Zm44 0a8 8 0 0 1-8 8c-4.4 0-6-3.6-10-8 4-4.4 5.6-8 10-8a8 8 0 0 1 8 8Z'/></svg>");
+    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'><path fill='%23000' fill-rule='evenodd' d='M0 0h56v56H0V0Zm28 6a8 8 0 0 1 8 8c0 4.4-3.6 6-8 10-4.4-4-8-5.6-8-10a8 8 0 0 1 8-8Zm0 44a8 8 0 0 1-8-8c0-4.4 3.6-6 8-10 4.4 4 8 5.6 8 10a8 8 0 0 1-8 8ZM6 28a8 8 0 0 1 8-8c4.4 0 6 3.6 10 8-4 4.4-5.6 8-10 8a8 8 0 0 1-8-8Zm44 0a8 8 0 0 1-8 8c-4.4 0-6-3.6-10-8 4-4.4 5.6-8 10-8a8 8 0 0 1 8 8Z'/></svg>");
+    -webkit-mask-size: 56px 56px;
+    mask-size: 56px 56px;
+  }
+  .breeze-tint {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'><path fill='%23044747' fill-opacity='1' fill-rule='evenodd' d='M0 0h56v56H0V0Zm28 6a8 8 0 0 1 8 8c0 4.4-3.6 6-8 10-4.4-4-8-5.6-8-10a8 8 0 0 1 8-8Zm0 44a8 8 0 0 1-8-8c0-4.4 3.6-6 8-10 4.4 4 8 5.6 8 10a8 8 0 0 1-8 8ZM6 28a8 8 0 0 1 8-8c4.4 0 6 3.6 10 8-4 4.4-5.6 8-10 8a8 8 0 0 1-8-8Zm44 0a8 8 0 0 1-8 8c-4.4 0-6-3.6-10-8 4-4.4 5.6-8 10-8a8 8 0 0 1 8 8Z'/></svg>");
+    background-size: 56px 56px;
+  }
+
+  /* Gold check-mark list used in the included ledger.
      Drawn SVG check via mask, one consistent stroke weight. */
   .check-list li {
     position: relative;
@@ -227,20 +250,18 @@
   .skip-link:focus {
     left: 0;
   }
-  /* Soft floating animation for hero cards */
-  .animate-float {
-    animation: c4-float 5s ease-in-out infinite;
+  /* Hero load-in: the page's one orchestrated moment.
+     Staggered, ease-out, GPU-only, sub-500ms total. */
+  .hero-in {
+    opacity: 0;
+    transform: translateY(18px);
+    animation: hero-in 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: calc(var(--stagger, 0) * 70ms);
   }
-  .animate-float-slow {
-    animation: c4-float 7s ease-in-out infinite;
-  }
-  @keyframes c4-float {
-    0%,
-    100% {
+  @keyframes hero-in {
+    to {
+      opacity: 1;
       transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-10px);
     }
   }
   /* Reveal-on-scroll base state (activated by IntersectionObserver) */
@@ -254,13 +275,11 @@
     transform: translateY(0);
   }
   @media (prefers-reduced-motion: reduce) {
-    .reveal {
+    .reveal,
+    .hero-in {
       opacity: 1;
       transform: none;
       transition: none;
-    }
-    .animate-float,
-    .animate-float-slow {
       animation: none;
     }
     html {
@@ -269,7 +288,8 @@
   }
   /* Print: everything visible, no animation */
   @media print {
-    .reveal {
+    .reveal,
+    .hero-in {
       opacity: 1 !important;
       transform: none !important;
     }

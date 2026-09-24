@@ -22,13 +22,13 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: `C4 Student Accommodations CC | Female Student Housing in Windhoek`,
+    default: `C4 Student Accommodations CC | Student Housing in Windhoek`,
     template: `%s | ${SITE.name}`,
   },
   description: SITE.description,
   keywords: [
     "student accommodation Windhoek",
-    "female student accommodation Namibia",
+    "student accommodation Namibia",
     "Khomasdal student housing",
     "Rocky Crest student stay",
     "2027 student bookings Windhoek",
@@ -61,8 +61,7 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon.svg", type: "image/svg+xml" },
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
       { url: "/favicon.ico", type: "image/x-icon" },
     ],
     apple: "/apple-touch-icon.png",
@@ -82,7 +81,7 @@ const localBusinessJsonLd = {
   "@id": `${SITE.url}/#business`,
   name: SITE.name,
   url: SITE.url,
-  logo: `${SITE.url}/logo.png`,
+  logo: `${SITE.url}/icon-512.png`,
   image: `${SITE.url}/og-image.jpg`,
   description: SITE.description,
   email: SITE.email,

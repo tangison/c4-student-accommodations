@@ -143,11 +143,11 @@ export function AiAgent() {
                   send();
                 }
               }}
-              placeholder="Ask about rooms, pricing, booking..."
+              placeholder="Ask about rooms, pricing, booking…"
               maxLength={500}
               autoComplete="off"
               aria-label="Type your message"
-              className="flex-1 border border-border rounded-full px-3.5 py-2 text-[13px] outline-none focus:border-gold transition-colors"
+              className="flex-1 border border-border rounded-full px-3.5 py-2 text-[13px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold focus:border-gold transition-colors"
             />
             <button
               type="button"

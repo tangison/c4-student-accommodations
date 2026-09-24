@@ -8,6 +8,7 @@ const LEGAL_LINKS = [
   { href: "/cookies", label: "Cookie Policy" },
   { href: "/disclaimer", label: "Disclaimer" },
   { href: "/accessibility", label: "Accessibility" },
+  { href: "/brand", label: "Brand" },
 ];
 
 export function SiteFooter() {
@@ -15,13 +16,14 @@ export function SiteFooter() {
 
   return (
     <footer role="contentinfo" className="bg-brand text-white pt-16 pb-8 border-t-[6px] border-gold">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-10 border-b border-white/15">
           {/* Brand */}
           <div>
             <div className="bg-white p-2.5 rounded-lg inline-block mb-4">
               <Image
-                src="/logo.png"
+                src="/c4-logo.svg"
+              unoptimized
                 alt={`${SITE.name} logo`}
                 width={180}
                 height={60}
@@ -30,8 +32,8 @@ export function SiteFooter() {
               />
             </div>
             <p className="text-sm text-white/75 leading-relaxed">
-              Safe, secure and fully furnished accommodation for female
-              students. The only student stay that cares and matters.
+              Safe, secure and fully furnished accommodation for students.
+              The only student stay that cares and matters.
             </p>
           </div>
 
@@ -129,7 +131,7 @@ export function SiteFooter() {
             Right padding keeps the credit clear of the floating action buttons. */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-5 pb-14 sm:pb-0 sm:pr-72 border-t border-white/15">
           <p className="text-xs text-white/70">
-            © <span className="copyright-year">{year}</span> {SITE.name}. All
+            &copy; <span className="copyright-year">{year}</span> {SITE.name}. All
             rights reserved.
           </p>
           <p className="flex items-center gap-1.5 text-xs text-white/70">
